@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 13:09:32 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:08:05 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static int	is_rectangular(t_game *game)
 {
 	size_t	len;
-	int	i;
+	int			i;
 
-	if (!game->map.calloc || !game->map.calloc[0])
+	if (!game->map.array || !game->map.array[0])
 		ft_error("Map is empty or invalid.");
-	len = ft_strlen(game->map.calloc[0]);
+	len = ft_strlen(game->map.array[0]);
 	i = 1;
-	while (game->map.calloc[i])
+	while (game->map.array[i])
 	{
-		if (ft_strlen(game->map.calloc[i]) != len)
+		if (ft_strlen(game->map.array[i]) != len)
 			ft_error("Map is not rectangular.");
 		i++;
 	}
@@ -35,24 +35,24 @@ static int	is_surrounded_by_walls(t_game *game)
 	int	i;
 	int	last_row;
 
-	if (!game->map.calloc || !game->map.calloc[0])
+	if (!game->map.array || !game->map.array[0])
 		ft_error("Map is empty or invalid.");
 	last_row = 0;
-	while (game->map.calloc[last_row])
+	while (game->map.array[last_row])
 		last_row++;
 	last_row--;
 	i = 0;
-	while (game->map.calloc[0][i] && game->map.calloc[last_row][i])
+	while (game->map.array[0][i] && game->map.array[last_row][i])
 	{
-		if (game->map.calloc[0][i] != '1' || game->map.calloc[last_row][i] != '1')
+		if (game->map.array[0][i] != '1' || game->map.array[last_row][i] != '1')
 			ft_error("Top or bottom row not enclosed by walls.");
 		i++;
 	}
 	i = 0;
-	while (game->map.calloc[i])
+	while (game->map.array[i])
 	{
-		if (game->map.calloc[i][0] != '1' 
-				|| game->map.calloc[i][ft_strlen(game->map.calloc[i]) - 1] != '1')
+		if (game->map.array[i][0] != '1'
+				|| game->map.array[i][ft_strlen(game->map.array[i]) - 1] != '1')
 			ft_error("Left or right not enclosed by walls.");
 		i++;
 	}
@@ -65,20 +65,21 @@ static int	validate_map_components(t_game *game)
 	int	j;
 
 	i = 0;
-	while (game->map.calloc[i])
+	while (game->map.array[i])
 	{
 		j = 0;
-		while (game->map.calloc[i][j])
+		while (game->map.array[i][j])
 		{
-			if (game->map.calloc[i][j] == 'E')
+			if (game->map.array[i][j] == 'E')
 				game->map.exit++;
-			if (game->map.calloc[i][j] == 'P')
+			if (game->map.array[i][j] == 'P')
 				game->map.player++;
-			if (game->map.calloc[i][j] == 'C')
+			if (game->map.array[i][j] == 'C')
 				game->map.collectible++;
-			if (game->map.calloc[i][j] != 'E' && game->map.calloc[i][j] != 'P'
-					&& game->map.calloc[i][j] != 'C' && game->map.calloc[i][j] != 'E'
-					&& game->map.calloc[i][j] != '1' && game->map.calloc[i][j] != '0')
+			//Hacer una funcion aparte de esto
+			if (game->map.array[i][j] != 'E' && game->map.array[i][j] != 'P'
+					&& game->map.array[i][j] != 'C' && game->map.array[i][j] != 'E'
+					&& game->map.array[i][j] != '1' && game->map.array[i][j] != '0')
 				ft_error("Invalid components.");
 			j++;
 		}
@@ -86,18 +87,29 @@ static int	validate_map_components(t_game *game)
 	}
 	if (game->map.exit != 1 || game->map.player != 1 || game->map.collectible < 1)
 		ft_error("Invalid number of components.");
-	else
-		return (0);
+	return (0);
 }
 
 int	map_checker(t_game *game)
 {
-	if (is_rectangular(&game) == 1)
+	if (is_rectangular(game) == 1)
 		return (1);
-	if (is_surrounded_by_walls(&game) == 1)
+	if (is_surrounded_by_walls(game) == 1)
 		return (1);
-	if (validate_map_components(&game) == 1)
+	if (validate_map_components(game) == 1)
 		return (1);
 	//validar pathfinding
 	return (0);
+}
+
+int	main(void)
+{
+	t_game	game;
+	
+	game.fd = open("map1.ber", O_RDONLY);
+	if (game.fd < 0 || game.fd == 0)
+		ft_error("Failed to open file");
+	init_value(&game);
+	map_parser(&game);
+	ft_printf("%d", map_checker(&game));
 }

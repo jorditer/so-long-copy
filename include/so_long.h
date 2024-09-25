@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 13:26:33 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:23:36 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,25 @@
 
 /* STRUCTS */
 
-typedef struct s_multi
+typedef struct s_coord
 {
 	mlx_image_t	*image;
 	int			x;
 	int			y;
-}				t_multi;
+}				t_coord;
 
 typedef struct s_img
 {
 	mlx_image_t	*floor[2];
 	mlx_image_t	*wall;
-	t_multi		exit;
-	t_multi		player;
-	t_multi		collect[100];
+	t_coord		exit;
+	t_coord		player;
+	t_coord		collect[100];
 }				t_img;
 
 typedef struct s_map
 {
-	char	**calloc;
+	char	**array;
 	char	**info;
 	int		columns;
 	int		rows;
@@ -79,5 +79,7 @@ void	ft_error(char *msg);
 void	map_parser(t_game *game);
 int	map_checker(t_game *game);
 void	init_value(t_game *game);
+int	line_len(char *str);
+void	free_map(char *msg, t_game *game);
 
 #endif
