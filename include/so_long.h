@@ -76,8 +76,8 @@ typedef struct s_game
 /* FUNCTIONS */
 
 void	ft_error(char *msg);
-void	parse_map(t_game *game);
-int	validate_map(t_game *game);
+void	map_parser(t_game *game);
+int	map_checker(t_game *game);
 void	init_value(t_game *game);
 
 #endif

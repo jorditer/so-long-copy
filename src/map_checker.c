@@ -90,7 +90,7 @@ static int	validate_map_components(t_game *game)
 		return (0);
 }
 
-int	validate_map(t_game *game)
+int	map_checker(t_game *game)
 {
 	if (is_rectangular(&game) == 1)
 		return (1);

@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 	
 	//Functions to initialize values, maps, layers, mlx, textures
 	init_value(&game);
-	parse_map(&game);
-	validate_map(&game);
+	map_parser(&game);
+	map_checker(&game);
 	
 	/*
 	mlx_loop_hook();
