@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:54:55 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 17:23:22 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:31:19 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	map_len(t_game *game, char *line, int i)
 		game->map.rows = len;
 	/*
 	if (len >= MAP_WIDTH / IMG_WIDTH)
-		ft_error_and_free_map("Map file too long.\n", game);
+		free_map("Map file too long.", game);
 	*/
 	return ;
 }
@@ -49,7 +49,7 @@ void	map_parser(t_game *game)
 	{
 		/*
 		if (i >= MAP_HEIGHT / IMG_HEIGHT)
-			ft_error_and_free_map("Map file too high.\n", game);
+			free_map("Map file too high.", game);
 		*/
 		if (game->map.array == NULL)
 			map_calloc(game);
