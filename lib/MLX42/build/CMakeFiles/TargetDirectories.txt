@@ -1,0 +1,7 @@
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/mlx42.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/edit_cache.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/rebuild_cache.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/list_install_components.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/install.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/install/local.dir
+/home/jandreu/Escritorio/Cursus/So-Long/lib/MLX42/build/CMakeFiles/install/strip.dir

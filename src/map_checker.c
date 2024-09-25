@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:08:05 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:33:07 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	map_checker(t_game *game)
 	return (0);
 }
 
+/*
 int	main(void)
 {
 	t_game	game;
@@ -112,4 +113,4 @@ int	main(void)
 	init_value(&game);
 	map_parser(&game);
 	ft_printf("%d", map_checker(&game));
-}
+}*/
