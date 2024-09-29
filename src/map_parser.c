@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:54:55 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:31:19 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:22:01 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	map_len(t_game *game, char *line, int i)
 
 	len = line_len(line);
 	if (i == 0)
-		game->map.rows = len;
+		game->map.columns = len;
 	/*
 	if (len >= MAP_WIDTH / IMG_WIDTH)
 		free_map("Map file too long.", game);
@@ -57,12 +57,12 @@ void	map_parser(t_game *game)
 		if (!game->map.array[i])
 			free_map("Error allocating map rows", game);
 		map_len(game, line, i);
-		ft_strlcpy(game->map.array[i], line, game->map.rows + 1);
+		ft_strlcpy(game->map.array[i], line, game->map.columns + 1);
 		i++;
 		free(line);
 		line = get_next_line(game->fd);
 	}
-	game->map.columns = i;
+	game->map.rows = i;
 	free(line);
 	close(game->fd);
 }

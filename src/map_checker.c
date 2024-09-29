@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/29 16:43:34 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:15:20 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ static int	validate_map_components(t_game *game)
 			if (game->map.array[i][j] == 'E')
 				game->map.exit++;
 			if (game->map.array[i][j] == 'P')
+			{
 				game->map.player++;
+				game->position.x = j;
+				game->position.y = i;
+			}
 			if (game->map.array[i][j] == 'C')
 				game->map.collectible++;
 			invalid_components(game, i, j);
@@ -105,5 +109,7 @@ int	map_checker(t_game *game)
 	if (validate_map_components(game) == 1)
 		return (1);
 	//validar pathfinding
+	if (pathfinding(game) == 1)
+		return (1);
 	return (0);
 }

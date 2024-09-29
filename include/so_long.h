@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:36 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:10:46 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ int	map_checker(t_game *game);
 void	init_value(t_game *game);
 int	line_len(char *str);
 void	free_map(char *msg, t_game *game);
+int	pathfinding(t_game *game);
 
 #endif
