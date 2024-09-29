@@ -15,7 +15,7 @@ RM = rm -f                 # Command to remove files
 MKDIR_P = mkdir -p         # Command to create directories
 
 CC = cc                    # C compiler
-CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -lm # Compiler flags
+CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -lm -g # Compiler flags
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 

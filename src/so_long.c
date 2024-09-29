@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:35:06 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/29 16:44:33 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:03:54 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int	main(int argc, char **argv)
 	mlx_loop(game.mlx);
 	*/
 	//Function to clean up everything
+	free_map("Maps freed", &game);
 }
