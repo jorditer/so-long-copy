@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:33:07 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:43:34 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_rectangular(t_game *game)
 {
 	size_t	len;
-	int			i;
+	int		i;
 
 	if (!game->map.array || !game->map.array[0])
 		ft_error("Map is empty or invalid.");
@@ -59,6 +59,14 @@ static int	is_surrounded_by_walls(t_game *game)
 	return (0);
 }
 
+static void	invalid_components(t_game *game, int i, int j)
+{
+	if (game->map.array[i][j] != 'E' && game->map.array[i][j] != 'P'
+			&& game->map.array[i][j] != 'C' && game->map.array[i][j] != 'E'
+			&& game->map.array[i][j] != '1' && game->map.array[i][j] != '0')
+		ft_error("Invalid components.");
+}
+
 static int	validate_map_components(t_game *game)
 {
 	int	i;
@@ -70,22 +78,20 @@ static int	validate_map_components(t_game *game)
 		j = 0;
 		while (game->map.array[i][j])
 		{
+			//Guardar posiciones (x,y)
 			if (game->map.array[i][j] == 'E')
 				game->map.exit++;
 			if (game->map.array[i][j] == 'P')
 				game->map.player++;
 			if (game->map.array[i][j] == 'C')
 				game->map.collectible++;
-			//Hacer una funcion aparte de esto
-			if (game->map.array[i][j] != 'E' && game->map.array[i][j] != 'P'
-					&& game->map.array[i][j] != 'C' && game->map.array[i][j] != 'E'
-					&& game->map.array[i][j] != '1' && game->map.array[i][j] != '0')
-				ft_error("Invalid components.");
+			invalid_components(game, i, j);
 			j++;
 		}
 		i++;
 	}
-	if (game->map.exit != 1 || game->map.player != 1 || game->map.collectible < 1)
+	if (game->map.exit != 1 || game->map.player != 1
+		|| game->map.collectible < 1)
 		ft_error("Invalid number of components.");
 	return (0);
 }
@@ -101,16 +107,3 @@ int	map_checker(t_game *game)
 	//validar pathfinding
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	t_game	game;
-	
-	game.fd = open("map1.ber", O_RDONLY);
-	if (game.fd < 0 || game.fd == 0)
-		ft_error("Failed to open file");
-	init_value(&game);
-	map_parser(&game);
-	ft_printf("%d", map_checker(&game));
-}*/

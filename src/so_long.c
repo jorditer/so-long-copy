@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:35:06 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:36:23 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:44:33 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	
+
 	if (argc != 2)
 		return (1);
 	//check_args(argc, argv, &game);
