@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 18:20:20 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:37:51 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	free_map_array(char **map, int columns)
 	free(map);
 }
 
-/*
+
 static void	free_map_info(char **vector)
 {
 	int	i;
@@ -47,15 +47,13 @@ static void	free_map_info(char **vector)
 		i++;
 	}
 	free(vector);
-}*/
+}
 
 void	free_map(char *msg, t_game *game)
 {
 	ft_printf("[ERROR] %s\n", msg);
 	free_map_array(game->map.array, game->map.columns);
-	/*
 	if (game->map.info != NULL)
-		free_map_info(game->map.info, game->map.columns);
-	*/
+		free_map_info(game->map.info);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:47:21 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/29 18:13:10 by antandre         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:34:24 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ static void	copy_map(t_game *game)
 {
 	int	i;
 	
-	game->map.info = malloc(sizeof(char *) * game->map.rows);
 	if (!game->map.info)
-		free_map("Memory allocation failed for map info.", game);
-	i = 0;
-	while (i < game->map.rows)
 	{
-		game->map.info[i] = malloc(sizeof(char) * (game->map.columns + 1));
-		if (!game->map.info[i])
-			free_map("Memory allocation failed for map row info.", game);
-		ft_strlcpy(game->map.info[i], game->map.array[i], game->map.columns + 1);
-		i++;
+		game->map.info = (char **)malloc(sizeof(char *) * (game->map.rows + 1));
+		if (!game->map.info)
+			free_map("Memory allocation failed for map rows info.", game);
+		i = 0;
+		while (i < game->map.rows)
+		{
+			game->map.info[i] = malloc(sizeof(char) * (game->map.columns + 1));
+			if (!game->map.info[i])
+				free_map("Memory allocation failed for map columns info.", game);
+			ft_strlcpy(game->map.info[i], game->map.array[i], game->map.columns + 1);
+			i++;
+		}
+		game->map.info[i] = NULL;
 	}
-	game->map.info[i] = NULL;
 }
 
 void	flood_fill(t_game *game, int x, int y, int *collectibles, int *exit_found)
