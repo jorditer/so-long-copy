@@ -21,7 +21,7 @@
    ```bash
    ./so_long /map/map1.ber
    ```   
-4. You can use the provided maps or create your own custom maps following the [map guidelines](#map_requirements).
+4. You can use the provided maps or create your own custom maps following the [map guidelines](#map-requirements).
 
 5. Additional Makefile Commands:
 
@@ -73,6 +73,21 @@ The map file passed as an argument to the game must adhere to the following rule
   - The map must be rectangular.
   - It must be surrounded by walls (`1`).
   - It should have at least one exit (`E`), one collectible (`C`), and one player start position (`P`).
+
+<br>
+
+## Bonus Features
+
+   - Enemy patrols that make the player lose when touched.
+   - Sprite animations.
+   - Displaying the movement count directly in the game window rather than in the terminal.
+
+<br>
+
+## Credits
+
+- This project uses the MLX42(), an adaptation of MiniLibX() library for window and image management.
+- Credits to the sprites() from itch.io
 
 <br>
 
