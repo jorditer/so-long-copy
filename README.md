@@ -21,7 +21,7 @@
    ```bash
    ./so_long /map/map1.ber
    ```   
-4. You can use the provided maps or create your own custom maps following the [map guidelines](##map_requirements).
+4. You can use the provided maps or create your own custom maps following the [map guidelines](#map_requirements).
 
 5. Additional Makefile Commands:
 
