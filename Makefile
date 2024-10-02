@@ -6,7 +6,7 @@
 #    By: antandre <antandre@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:56:18 by antandre          #+#    #+#              #
-#    Updated: 2024/09/24 16:23:58 by antandre         ###   ########.fr        #
+#    Updated: 2024/10/01 12:45:32 by antandre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ RM = rm -f                 # Command to remove files
 MKDIR_P = mkdir -p         # Command to create directories
 
 CC = cc                    # C compiler
-CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -lm -g # Compiler flags
+CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -g # Compiler flags
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 

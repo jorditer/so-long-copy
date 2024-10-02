@@ -82,5 +82,6 @@ void	init_value(t_game *game);
 int	line_len(char *str);
 void	free_map(char *msg, t_game *game);
 int	pathfinding(t_game *game);
+int	init_graphics(t_game *game);
 
 #endif
