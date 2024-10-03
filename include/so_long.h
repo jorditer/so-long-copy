@@ -28,7 +28,7 @@
 
 typedef struct s_coord
 {
-	mlx_image_t	*image;
+	mlx_image_t	*image[4];
 	int			x;
 	int			y;
 }				t_coord;
