@@ -25,21 +25,31 @@
 # include "../lib/Libft/include/libft.h"
 
 /* STRUCTS */
-
+/*
 typedef struct s_coord
 {
 	mlx_image_t	*image[4];
 	int			x;
 	int			y;
 }				t_coord;
+*/
+
+typedef struct s_texture
+{
+        mlx_texture_t *floor[2];
+        mlx_texture_t *wall;
+        mlx_texture_t *exit[2];
+        mlx_texture_t *player[4];
+        mlx_texture_t *collect;
+}                               t_texture;
 
 typedef struct s_img
 {
 	mlx_image_t	*floor[2];
 	mlx_image_t	*wall;
-	t_coord		exit;
-	t_coord		player;
-	t_coord		collect[100];
+	mlx_image_t	*exit[2];
+	mlx_image_t	*player[4];
+	mlx_image_t	*collect;
 }				t_img;
 
 typedef struct s_map
@@ -66,7 +76,8 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	int			fd;
-	t_img		img;
+        t_texture       *texture;
+	t_img		*img;
 	t_map		map;
 	t_position	position;
 	int			count;
@@ -83,5 +94,6 @@ int	line_len(char *str);
 void	free_map(char *msg, t_game *game);
 int	pathfinding(t_game *game);
 int	init_graphics(t_game *game);
+void    delete_textures(t_game *game);
 
 #endif
