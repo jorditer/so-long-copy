@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 17:11:09 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:18:42 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/Libft/include/libft.h"
 
-# define MAP_WIDTH  1600
-# define MAP_HEIGHT 1600
-# define IMG_WIDTH  16
-# define IMG_HEIGHT 16
+# define MAP_WIDTH  7100
+# define MAP_HEIGHT 7100
+# define IMG_WIDTH  50
+# define IMG_HEIGHT 50
 
 /* STRUCTS */
 
