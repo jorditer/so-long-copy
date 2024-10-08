@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 18:10:17 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:42:07 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	free_map_info(char **vector)
 
 void	free_map(char *msg, t_game *game)
 {
-	ft_printf("[ERROR] %s\n", msg);
+	ft_printf("%s\n", msg);
 	free_map_array(game->map.array, game->map.columns);
 	if (game->map.info != NULL)
 		free_map_info(game->map.info);
