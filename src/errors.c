@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 12:50:29 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:10:17 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@ void	ft_error(char *msg)
 	ft_printf("[ERROR] %s\n", msg);
 	exit(1);
 }
-
-void my_mlx_error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
-
 
 static void	free_map_array(char **map, int columns)
 {
@@ -39,7 +32,6 @@ static void	free_map_array(char **map, int columns)
 	}
 	free(map);
 }
-
 
 static void	free_map_info(char **vector)
 {

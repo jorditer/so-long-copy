@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/29 18:15:20 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:50:15 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ static void	invalid_components(t_game *game, int i, int j)
 			&& game->map.array[i][j] != 'C' && game->map.array[i][j] != 'E'
 			&& game->map.array[i][j] != '1' && game->map.array[i][j] != '0')
 		ft_error("Invalid components.");
+	if (game->map.array[i][j] == 'P')
+	{
+		game->map.player++;
+		game->position.x = j;
+		game->position.y = i;
+	}
 }
 
 static int	validate_map_components(t_game *game)
@@ -78,24 +84,16 @@ static int	validate_map_components(t_game *game)
 		j = 0;
 		while (game->map.array[i][j])
 		{
-			//Guardar posiciones (x,y)
 			if (game->map.array[i][j] == 'E')
 				game->map.exit++;
-			if (game->map.array[i][j] == 'P')
-			{
-				game->map.player++;
-				game->position.x = j;
-				game->position.y = i;
-			}
 			if (game->map.array[i][j] == 'C')
-				game->map.collectible++;
+				game->map.collect++;
 			invalid_components(game, i, j);
 			j++;
 		}
 		i++;
 	}
-	if (game->map.exit != 1 || game->map.player != 1
-		|| game->map.collectible < 1)
+	if (game->map.exit != 1 || game->map.player != 1 || game->map.collect < 1)
 		ft_error("Invalid number of components.");
 	return (0);
 }
@@ -108,7 +106,6 @@ int	map_checker(t_game *game)
 		return (1);
 	if (validate_map_components(game) == 1)
 		return (1);
-	//validar pathfinding
 	if (pathfinding(game) == 1)
 		return (1);
 	return (0);

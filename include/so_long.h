@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 17:18:42 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:15:17 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@
 
 /* STRUCTS */
 
-typedef struct s_texture
+typedef struct s_txt
 {
-        mlx_texture_t *floor[2];
-        mlx_texture_t *wall;
-        mlx_texture_t *exit[2];
-        mlx_texture_t *player[4];
-        mlx_texture_t *collect;
-}                               t_texture;
+	mlx_texture_t	*floor[2];
+	mlx_texture_t	*wall;
+	mlx_texture_t	*exit[2];
+	mlx_texture_t	*pnj[4];
+	mlx_texture_t	*collect;
+}							t_txt;
 
 typedef struct s_img
 {
 	mlx_image_t	*floor[2];
 	mlx_image_t	*wall;
 	mlx_image_t	*exit[2];
-	mlx_image_t	*player[4];
+	mlx_image_t	*pnj[4];
 	mlx_image_t	*collect;
 }				t_img;
 
@@ -55,11 +55,12 @@ typedef struct s_map
 	char	**info;
 	int		columns;
 	int		rows;
-	int		collectible;
+	int		collect;
 	int		player;
 	int		exit;
 	int		walls;
 	int		floor;
+	int		exit_found;
 }				t_map;
 
 typedef struct s_position
@@ -71,28 +72,27 @@ typedef struct s_position
 
 typedef struct s_game
 {
-	mlx_t		*mlx;
-	int			fd;
-        struct s_texture       *texture;
-	struct s_img		*img;
-	t_map		map;
-	t_position	position;
-	int			count;
-	int			finish_game;
+	mlx_t						*mlx;
+	int							fd;
+	struct s_txt				*txt;
+	struct s_img				*img;
+	t_map						map;
+	t_position					position;
+	int							count;
+	int							finish_game;
 }				t_game;
 
 /* FUNCTIONS */
 
 void	ft_error(char *msg);
 void	map_parser(t_game *game);
-int	map_checker(t_game *game);
+int		map_checker(t_game *game);
 void	init_value(t_game *game);
-int	line_len(char *str);
+int		line_len(char *str);
 void	free_map(char *msg, t_game *game);
-int	pathfinding(t_game *game);
-int	init_graphics(t_game *game);
-void    delete_textures(t_game *game);
-void    delete_images(t_game *game);
-void    my_mlx_error(void);
+int		pathfinding(t_game *game);
+int		init_graphics(t_game *game);
+void	delete_textures(t_game *game);
+void	delete_images(t_game *game);
 
 #endif
