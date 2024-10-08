@@ -76,8 +76,8 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	int			fd;
-        t_texture       *texture;
-	t_img		*img;
+        struct s_texture       *texture;
+	struct s_img		*img;
 	t_map		map;
 	t_position	position;
 	int			count;

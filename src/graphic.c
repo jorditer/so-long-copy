@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/04 16:25:17 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:07:52 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void error(void)
 
 static int init_textures(t_game *game)
 {
-	/*game->texture = ft_calloc(1, sizeof(t_texture *));
+	game->texture = ft_calloc(1, sizeof(t_texture));
 	if(!game->texture)
-		return (NULL);*/
+		return (1);
 	game->texture->floor[0] = mlx_load_png("./assets/floor1.png");
 	game->texture->floor[1] = mlx_load_png("./assets/floor2.png");
 	game->texture->wall = mlx_load_png("./assets/wall.png");
@@ -36,8 +36,7 @@ static int init_textures(t_game *game)
 	//Controlar si alguna textura falla return error
  	if (!game->texture->floor[0] || !game->texture->floor[1] || !game->texture->wall ||
         !game->texture->exit[0] || !game->texture->exit[1] || !game->texture->player[0] ||
-				!game->texture->player[1] || !game->texture->player[2] || !game->texture->player[3] ||
-        !game->texture->collect)
+				!game->texture->player[1] || !game->texture->player[2] || !game->texture->player[3] || !game->texture->collect)
     {
 				delete_textures(game);
         ft_error("Error: Failed to load some textures\n");
@@ -67,7 +66,7 @@ static int	init_images(t_game *game)
         !game->img->collect)
     {
         delete_textures(game);
-				free(game->img);
+				//free(game->img);
 				ft_error("Failed to create some images from textures\n");
     }
 		return (0);
