@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:35:06 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 19:40:20 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:05:45 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@ int	main(int argc, char **argv)
 	map_parser(&game);
 	if (map_checker(&game) == 0)
 	{
+		mlx_set_setting(MLX_STRETCH_IMAGE, true);
+		game.mlx = mlx_init(IMG_WIDTH * game.map.columns, \
+				IMG_HEIGHT * game.map.rows, "so_long", true);
+		if (!game.mlx)
+			free_map("Fail initializing MLX", &game);
 		init_graphics(&game);
-		//HOOKS
-		//mlx_loop_hook();
-		//mlx_key_hook();
+		mlx_key_hook(game.mlx, &my_key_hook, &game.mlx);
+		mlx_loop(game.mlx);
 	}
-	// CLEAN UP EVERYTHIN
+	// CLEAN UP EVERYTHING
+	delete_images(&game);
+	mlx_terminate(game.mlx);
 	free_map("", &game);
+	return (0);
 }

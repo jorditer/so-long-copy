@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 19:15:17 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:00:19 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_txt
 	mlx_texture_t	*floor[2];
 	mlx_texture_t	*wall;
 	mlx_texture_t	*exit[2];
-	mlx_texture_t	*pnj[4];
+	mlx_texture_t	*pnj;
 	mlx_texture_t	*collect;
 }							t_txt;
 
@@ -45,7 +45,7 @@ typedef struct s_img
 	mlx_image_t	*floor[2];
 	mlx_image_t	*wall;
 	mlx_image_t	*exit[2];
-	mlx_image_t	*pnj[4];
+	mlx_image_t	*pnj;
 	mlx_image_t	*collect;
 }				t_img;
 
@@ -91,8 +91,9 @@ void	init_value(t_game *game);
 int		line_len(char *str);
 void	free_map(char *msg, t_game *game);
 int		pathfinding(t_game *game);
-int		init_graphics(t_game *game);
+void    init_graphics(t_game *game);
 void	delete_textures(t_game *game);
 void	delete_images(t_game *game);
+void  my_key_hook(mlx_key_data_t keydata, void *param);
 
 #endif
