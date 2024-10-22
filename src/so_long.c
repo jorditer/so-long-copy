@@ -28,12 +28,16 @@ int	main(int argc, char **argv)
 		game.mlx = mlx_init(IMG_W * game.map.columns, \
 				IMG_H * game.map.rows, "so_long", true);
 		if (!game.mlx)
+		{
 			free_map("Fail initializing MLX", &game);
+			return (1);
+		}
 		init_graphics(&game);
 		mlx_key_hook(game.mlx, &my_key_hook, &game.mlx);
 		mlx_loop(game.mlx);
 	}
 	delete_images(&game);
+	delete_textures(&agme);
 	mlx_terminate(game.mlx);
 	free_map("", &game);
 	return (0);
