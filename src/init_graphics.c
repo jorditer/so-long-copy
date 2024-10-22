@@ -51,8 +51,8 @@ static int	init_images(t_game *game)
 		|| !game->img->exit[0] || !game->img->exit[1] || !game->img->pnj
 		|| !game->img->collect)
 	{
-		delete_textures(game);
 		delete_images(game);
+		delete_textures(game);
 		ft_error("Failed creating images from textures");
 	}
 	delete_textures(game);
