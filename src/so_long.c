@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:35:06 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 14:44:10 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:23:21 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,13 @@ int	main(int argc, char **argv)
 				IMG_H * game.map.rows, "so_long", true);
 		if (!game.mlx)
 		{
-			free_map("Fail initializing MLX", &game);
+			ft_error_clean("Fail initializing MLX", &game);
 			return (1);
 		}
 		init_graphics(&game);
 		mlx_key_hook(game.mlx, &my_key_hook, &game.mlx);
 		mlx_loop(game.mlx);
 	}
-	delete_images(&game);
-	delete_textures(&agme);
-	mlx_terminate(game.mlx);
-	free_map("", &game);
+	clean_up(&game);
 	return (0);
 }

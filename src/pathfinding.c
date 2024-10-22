@@ -20,13 +20,13 @@ static void	copy_map(t_game *game)
 	{
 		game->map.info = (char **)malloc(sizeof(char *) * (game->map.rows + 1));
 		if (!game->map.info)
-			free_map("Allocation failed for map rows info.", game);
+			ft_error_clean("Allocation failed for map rows info.", game);
 		i = 0;
 		while (i < game->map.rows)
 		{
 			game->map.info[i] = malloc(sizeof(char) * (game->map.columns + 1));
 			if (!game->map.info[i])
-				free_map("Allocation failed for map columns info.", game);
+				ft_error_clean("Allocation failed for map columns info.", game);
 			ft_strlcpy(game->map.info[i], game->map.array[i], \
 					game->map.columns + 1);
 			i++;

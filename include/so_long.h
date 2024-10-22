@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 14:46:59 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:25:31 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ typedef struct s_game
 /* FUNCTIONS */
 
 void	ft_error(char *msg);
+void  ft_error_clean(char *msg, t_game *game);
 void	map_parser(t_game *game);
 int		map_checker(t_game *game);
 void	init_value(t_game *game);
 int		line_len(char *str);
-void	free_map(char *msg, t_game *game);
+void	free_map(t_game *game);
 int		pathfinding(t_game *game);
 void	init_graphics(t_game *game);
 void	delete_textures(t_game *game);
@@ -98,5 +99,6 @@ void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	pick_collect(t_game *game, int y, int x);
 void	finish_game(t_game *game, int y, int x);
 void	check_args(int argc, char **argv);
+void  clean_up(t_game *game);
 
 #endif

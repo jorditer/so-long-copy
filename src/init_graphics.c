@@ -16,7 +16,7 @@ static int	init_textures(t_game *game)
 {
 	game->txt = ft_calloc(1, sizeof(t_txt));
 	if (!game->txt)
-		ft_error("Failled allocation for textures");
+		ft_error_clean("Failled allocation for textures", game);
 	game->txt->floor[0] = mlx_load_png("./assets/floor1.png");
 	game->txt->floor[1] = mlx_load_png("./assets/floor2.png");
 	game->txt->wall = mlx_load_png("./assets/wall.png");
@@ -28,10 +28,7 @@ static int	init_textures(t_game *game)
 		|| !game->txt->wall || !game->txt->exit[0]
 		|| !game->txt->exit[1] || !game->txt->pnj
 		|| !game->txt->collect)
-	{
-		delete_textures(game);
-		ft_error("Failed loading textures");
-	}
+      	  ft_error_clean("Failed loading textures", game);
 	return (0);
 }
 
@@ -39,7 +36,7 @@ static int	init_images(t_game *game)
 {
 	game->img = ft_calloc(1, sizeof(t_img));
 	if (!game->img)
-		ft_error("Failed allocation for images");
+		ft_error_clean("Failed allocation for images", game);
 	game->img->floor[0] = mlx_texture_to_image(game->mlx, game->txt->floor[0]);
 	game->img->floor[1] = mlx_texture_to_image(game->mlx, game->txt->floor[1]);
 	game->img->wall = mlx_texture_to_image(game->mlx, game->txt->wall);
@@ -50,11 +47,7 @@ static int	init_images(t_game *game)
 	if (!game->img->floor[0] || !game->img->floor[1] || !game->img->wall
 		|| !game->img->exit[0] || !game->img->exit[1] || !game->img->pnj
 		|| !game->img->collect)
-	{
-		delete_images(game);
-		delete_textures(game);
-		ft_error("Failed creating images from textures");
-	}
+	  ft_error_clean("Failed creating images from textures", game);
 	delete_textures(game);
 	return (0);
 }
