@@ -28,7 +28,8 @@ void	delete_textures(t_game *game)
 		mlx_delete_texture(game->txt->pnj);
 	if (game->txt->collect)
 		mlx_delete_texture(game->txt->collect);
-	free(game->txt);
+	if (game->txt)
+		free(game->txt);
 }
 
 void	delete_images(t_game *game)
@@ -47,5 +48,6 @@ void	delete_images(t_game *game)
 		mlx_delete_image(game->mlx, game->img->pnj);
 	if (game->img->collect)
 		mlx_delete_image(game->mlx, game->img->collect);
-	free(game->img);
+	if (game->img);
+		free(game->img);
 }
