@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/11 13:05:25 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:53:54 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static int	init_textures(t_game *game)
 	game->txt->wall = mlx_load_png("./assets/wall.png");
 	game->txt->exit[0] = mlx_load_png("./assets/exit1.png");
 	game->txt->exit[1] = mlx_load_png("./assets/exit2.png");
-	game->txt->pnj = mlx_load_png("./assets/p_down.png");
-	//game->txt->pnj[1] = mlx_load_png("./assets/p_down.png");
-	//game->txt->pnj[2] = mlx_load_png("./assets/p_l.png");
-	//game->txt->pnj[3] = mlx_load_png("./assets/p_r.png");
+	game->txt->pnj = mlx_load_png("./assets/pnj.png");
 	game->txt->collect = mlx_load_png("./assets/collect.png");
 	if (!game->txt->floor[0] || !game->txt->floor[1]
 		|| !game->txt->wall || !game->txt->exit[0]
@@ -49,9 +46,6 @@ static int	init_images(t_game *game)
 	game->img->exit[0] = mlx_texture_to_image(game->mlx, game->txt->exit[0]);
 	game->img->exit[1] = mlx_texture_to_image(game->mlx, game->txt->exit[1]);
 	game->img->pnj = mlx_texture_to_image(game->mlx, game->txt->pnj);
-	//game->img->pnj[1] = mlx_texture_to_image(game->mlx, game->txt->pnj[1]);
-	//game->img->pnj[2] = mlx_texture_to_image(game->mlx, game->txt->pnj[2]);
-	//game->img->pnj[3] = mlx_texture_to_image(game->mlx, game->txt->pnj[3]);
 	game->img->collect = mlx_texture_to_image(game->mlx, game->txt->collect);
 	if (!game->img->floor[0] || !game->img->floor[1] || !game->img->wall
 		|| !game->img->exit[0] || !game->img->exit[1] || !game->img->pnj
@@ -77,13 +71,17 @@ static void	draw_map(t_game *game)
 		while (game->map.array[y][x])
 		{
 			mlx_image_to_window(game->mlx, game->img->floor[0], \
-					x * IMG_WIDTH, y * IMG_HEIGHT);
+					x * IMG_W, y * IMG_H);
 			if (game->map.array[y][x] == '1')
 				mlx_image_to_window(game->mlx, game->img->wall, \
-						x * IMG_WIDTH, y * IMG_HEIGHT);
+						x * IMG_W, y * IMG_H);
 			if (game->map.array[y][x] == 'E')
+			{
+				mlx_image_to_window(game->mlx, game->img->exit[1], \
+						x * IMG_W, y * IMG_H);
 				mlx_image_to_window(game->mlx, game->img->exit[0], \
-						x * IMG_WIDTH, y * IMG_HEIGHT);
+						x * IMG_W, y * IMG_H);
+			}
 			x++;
 		}
 		y++;
@@ -103,10 +101,10 @@ static void	draw_items(t_game *game)
 		{
 			if (game->map.array[y][x] == 'C')
 				mlx_image_to_window(game->mlx, game->img->collect, \
-						x * IMG_WIDTH, y * IMG_HEIGHT);
+						x * IMG_W, y * IMG_H);
 			if (game->map.array[y][x] == 'P')
 				mlx_image_to_window(game->mlx, game->img->pnj, \
-						x * IMG_WIDTH, y * IMG_HEIGHT);
+						x * IMG_W, y * IMG_H);
 			x++;
 		}
 		y++;

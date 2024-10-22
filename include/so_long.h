@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/11 13:00:19 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:46:59 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define MAP_WIDTH  7100
 # define MAP_HEIGHT 7100
-# define IMG_WIDTH  50
-# define IMG_HEIGHT 50
+# define IMG_W 50
+# define IMG_H 50
 
 /* STRUCTS */
 
@@ -91,9 +91,12 @@ void	init_value(t_game *game);
 int		line_len(char *str);
 void	free_map(char *msg, t_game *game);
 int		pathfinding(t_game *game);
-void    init_graphics(t_game *game);
+void	init_graphics(t_game *game);
 void	delete_textures(t_game *game);
 void	delete_images(t_game *game);
-void  my_key_hook(mlx_key_data_t keydata, void *param);
+void	my_key_hook(mlx_key_data_t keydata, void *param);
+void	pick_collect(t_game *game, int y, int x);
+void	finish_game(t_game *game, int y, int x);
+void	check_args(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2024/09/25 17:26:51 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:36:19 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,15 @@ int	line_len(char *str)
 		i++;
 	}
 	return (i);
+}
+
+void	check_args(int argc, char **argv)
+{
+	int	map_len;
+
+	if (argc != 2)
+		ft_error("Invalid number of arguments.");
+	map_len = ft_strlen(argv[1]);
+	if (ft_strnstr(&argv[1][map_len - 4], ".ber", 4) == NULL)
+		ft_error("Invalid map extension.");
 }

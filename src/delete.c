@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:40:23 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/11 12:59:51 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:47:42 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	delete_textures(t_game *game)
 		mlx_delete_texture(game->txt->exit[1]);
 	if (game->txt->pnj)
 		mlx_delete_texture(game->txt->pnj);
-	//if (game->txt->pnj[1])
-		//mlx_delete_texture(game->txt->pnj[1]);
-	//if (game->txt->pnj[2])
-		//mlx_delete_texture(game->txt->pnj[2]);
-	//if (game->txt->pnj[3])
-		//mlx_delete_texture(game->txt->pnj[3]);
 	if (game->txt->collect)
 		mlx_delete_texture(game->txt->collect);
 	free(game->txt);
@@ -51,12 +45,6 @@ void	delete_images(t_game *game)
 		mlx_delete_image(game->mlx, game->img->exit[1]);
 	if (game->img->pnj)
 		mlx_delete_image(game->mlx, game->img->pnj);
-	//if (game->img->pnj[1])
-		//mlx_delete_image(game->mlx, game->img->pnj[1]);
-	//if (game->img->pnj[2])
-		//mlx_delete_image(game->mlx, game->img->pnj[2]);
-	//if (game->img->pnj[3])
-		//mlx_delete_image(game->mlx, game->img->pnj[3]);
 	if (game->img->collect)
 		mlx_delete_image(game->mlx, game->img->collect);
 	free(game->img);
