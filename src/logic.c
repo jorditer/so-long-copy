@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:12:00 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 14:53:09 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:29:07 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	pick_collect(t_game *game, int y, int x)
 		game->map.array[y / IMG_W][x / IMG_H] = '0';
 		game->count++;
 		if (game->count == game->map.collect)
-			game->img->exit[0]->instances->enabled = false;
+			game->img->exit1->instances->enabled = false;
 	}
 }
 
