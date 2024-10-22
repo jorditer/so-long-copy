@@ -108,5 +108,4 @@ void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	pick_collect(t_game *game, int y, int x);
 void	finish_game(t_game *game, int y, int x);
 
-
 #endif
