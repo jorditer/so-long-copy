@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 18:24:59 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:45:43 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_error(char *msg)
 	exit(1);
 }
 
-void  ft_error_clean(char *msg, t_game *game)
+void	ft_error_clean(char *msg, t_game *game)
 {
- 	ft_printf("[ERROR] %s\n", msg);
+	ft_printf("[ERROR] %s\n", msg);
 	clean_up(game);
 	exit(1);
 }

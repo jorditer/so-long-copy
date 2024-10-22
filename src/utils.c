@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 18:27:00 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:40:36 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,21 @@ void	check_args(int argc, char **argv)
 		ft_error("Invalid map extension.");
 }
 
-void	clean_up(t_game *game)
+void	init_value(t_game *game)
 {
-	delete_images(game);
-	delete_textures(game);
-	if (game->mlx)
-		mlx_terminate(game->mlx);
-	if (game->map.array || game->map.info)
-		free_map(game);
-	if (game->fd > 0)
-    close(game->fd);
+	game->position.x = 0;
+	game->position.y = 0;
+	game->position.move = 0;
+	game->map.rows = 0;
+	game->map.columns = 0;
+	game->map.collect = 0;
+	game->map.exit = 0;
+	game->map.player = 0;
+	game->map.walls = 0;
+	game->map.floor = 0;
+	game->map.info = NULL;
+	game->map.exit_found = 0;
+	game->count = 0;
+	game->finish_game = 0;
+	game->map.array = NULL;
 }

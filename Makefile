@@ -38,7 +38,7 @@ all: libmlx libft $(NAME)             # all target depends on $(NAME)
 #Rules to create the libraries
 libmlx:
 	@echo "Building libmlx..."
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make --no-print-directory -C $(LIBMLX)/build -j4
+	@cmake $(LIBMLX) -B $(LIBMLX)/build -DCMAKE_BUILD_TYPE=Debug && make --no-print-directory -C $(LIBMLX)/build -j4
 	@echo "libmlx built succesfully"
 
 libft:

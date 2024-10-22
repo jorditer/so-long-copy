@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 18:25:31 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:49:02 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/Libft/include/libft.h"
+
+/* VARIABLES */
 
 # define MAP_WIDTH  7100
 # define MAP_HEIGHT 7100
@@ -85,7 +87,7 @@ typedef struct s_game
 /* FUNCTIONS */
 
 void	ft_error(char *msg);
-void  ft_error_clean(char *msg, t_game *game);
+void	ft_error_clean(char *msg, t_game *game);
 void	map_parser(t_game *game);
 int		map_checker(t_game *game);
 void	init_value(t_game *game);
@@ -99,6 +101,6 @@ void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	pick_collect(t_game *game, int y, int x);
 void	finish_game(t_game *game, int y, int x);
 void	check_args(int argc, char **argv);
-void  clean_up(t_game *game);
+void	clean_up(t_game *game);
 
 #endif

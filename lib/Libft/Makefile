@@ -16,7 +16,7 @@ RM = rm -f                 # Command to remove files
 MKDIR_P = mkdir -p         # Command to create directories
 
 CC = cc                    # C compiler
-CCFLAGS = -Wall -Wextra -Werror -Iinclude  # Compiler flags
+CCFLAGS = -Wall -Wextra -Werror -Iinclude -g # Compiler flags
 
 # Target definitions
 NAME = libft.a

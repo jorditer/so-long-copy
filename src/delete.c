@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:40:23 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 14:47:42 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:46:17 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	delete_textures(t_game *game)
 {
 	if (game->txt)
-    	{
+	{
 		if (game->txt->floor[0])
 			mlx_delete_texture(game->txt->floor[0]);
 		if (game->txt->floor[1])
@@ -56,4 +56,16 @@ void	delete_images(t_game *game)
 		free(game->img);
 		game->img = NULL;
 	}
+}
+
+void	clean_up(t_game *game)
+{
+	delete_images(game);
+	delete_textures(game);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
+	if (game->map.array || game->map.info)
+		free_map(game);
+	if (game->fd > 0)
+		close(game->fd);
 }
