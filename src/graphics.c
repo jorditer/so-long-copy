@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 20:31:11 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:39:47 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ static int	init_textures(t_game *game)
 	game->txt->exit2 = mlx_load_png("./assets/exit2.png");
 	game->txt->pnj = mlx_load_png("./assets/pnj.png");
 	game->txt->collect = mlx_load_png("./assets/collect.png");
-	if (!game->txt->floor || !game->txt->floor || !game->txt->wall 
-			|| !game->txt->exit1 || !game->txt->exit2 || !game->txt->pnj
-			|| !game->txt->collect)
+	if (!game->txt->floor || !game->txt->wall || !game->txt->exit1
+		|| !game->txt->exit2 || !game->txt->pnj || !game->txt->collect)
 		ft_error_clean("Failed loading textures", game);
 	return (0);
 }
@@ -41,8 +40,8 @@ static int	init_images(t_game *game)
 	game->img->exit2 = mlx_texture_to_image(game->mlx, game->txt->exit2);
 	game->img->pnj = mlx_texture_to_image(game->mlx, game->txt->pnj);
 	game->img->collect = mlx_texture_to_image(game->mlx, game->txt->collect);
-	if (!game->img->floor || !game->img->wall || !game->img->exit1 
-			|| !game->img->exit2 || !game->img->pnj || !game->img->collect)
+	if (!game->img->floor || !game->img->wall || !game->img->exit1
+		|| !game->img->exit2 || !game->img->pnj || !game->img->collect)
 		ft_error_clean("Failed creating images from textures", game);
 	delete_textures(game);
 	return (0);
