@@ -4,6 +4,10 @@
 
 <br>
 
+![Descripción de la imagen](https://private-user-images.githubusercontent.com/147188123/380523638-0e2db797-a975-434d-a37a-2cbdf99a9aae.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAwNTY1NzgsIm5iZiI6MTczMDA1NjI3OCwicGF0aCI6Ii8xNDcxODgxMjMvMzgwNTIzNjM4LTBlMmRiNzk3LWE5NzUtNDM0ZC1hMzdhLTJjYmRmOTlhOWFhZS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAyN1QxOTExMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05MGU0YTE1MTA3ZTg0NmI5ZGY1MmI0N2JkOTIzMTdlYzIwZWNlNmIxNjkyYTkzOTk0OWY3NTZlZmU5MmU4YmFmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.r-RUz5xQ_51EDbQg7hww96mZI3LJmOJqAtLDz3zyAjY)
+
+<br>
+
 ## How to Run
 
 1. Clone this repository:
@@ -72,11 +76,12 @@ The map file passed as an argument to the game must adhere to the following rule
 - **Structure**: 
   - The map must be rectangular.
   - It must be surrounded by walls (`1`).
-  - It should have at least one exit (`E`), one collectible (`C`), and one player start position (`P`).
+  - It should have one exit (`E`), one player start position (`P`) and at least one collectible (`C`).
 
 <br>
 
 ## Bonus Features
+> Not implemented yet
 
    - Enemy patrols that make the player lose when touched.
    - Sprite animations.
@@ -86,8 +91,11 @@ The map file passed as an argument to the game must adhere to the following rule
 
 ## Credits
 
-- This project uses the MLX42(), an adaptation of MiniLibX() library for window and image management.
-- Credits to the sprites() from itch.io
+- This project uses the [MLX42](https://github.com/codam-coding-college/MLX42), an adaptation of [MiniLibX](https://github.com/42Paris/minilibx-linux) library for window and image management.
+- The sprites are sourced from Itch.io:
+   - [Dungeon Tileset II](https://0x72.itch.io/dungeontileset-ii)
+   - [RPG Icon Pack: Jewels and Gems](https://clockworkraven.itch.io/rpg-icon-pack-jewels-and-gems)
+
 
 <br>
 
