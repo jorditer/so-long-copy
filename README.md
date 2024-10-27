@@ -77,6 +77,7 @@ The map file passed as an argument to the game must adhere to the following rule
   - The map must be rectangular.
   - It must be surrounded by walls (`1`).
   - It should have one exit (`E`), one player start position (`P`) and at least one collectible (`C`).
+  - There must be a valid path from the player (`P`) to all collectibles (`C`) and the exit (`E`).
 
 <br>
 
