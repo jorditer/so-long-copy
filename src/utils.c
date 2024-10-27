@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 19:40:36 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:50:04 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,7 @@ void	init_value(t_game *game)
 	game->count = 0;
 	game->finish_game = 0;
 	game->map.array = NULL;
+	game->txt = NULL;
+	game->img = NULL;
+	game->mlx = NULL;
 }
