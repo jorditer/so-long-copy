@@ -6,7 +6,7 @@
 #    By: antandre <antandre@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:56:18 by antandre          #+#    #+#              #
-#    Updated: 2024/10/01 12:45:32 by antandre         ###   ########.fr        #
+#    Updated: 2024/10/27 19:29:57 by antandre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,14 @@ all: libmlx libft $(NAME)             # all target depends on $(NAME)
 #Rules to create the libraries
 libmlx:
 	@echo "Building libmlx..."
-	@cmake $(LIBMLX) -B $(LIBMLX)/build -DCMAKE_BUILD_TYPE=Debug && make --no-print-directory -C $(LIBMLX)/build -j4
+	@cmake -Wno-dev -S $(LIBMLX) -B $(LIBMLX)/build -DCMAKE_BUILD_TYPE=Debug > /dev/null 2>&1 && \
+	make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
 	@echo "libmlx built succesfully"
 
 libft:
 	@echo "Building libft..."
-	@$(MAKE) --no-print-directory -C $(LIBFT)
+	@$(MAKE) -C $(LIBFT) > /dev/null
+	@echo "libft built succesfully"
 
 # Rule to create the program
 $(NAME): $(OBJ)

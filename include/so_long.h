@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 20:28:27 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/27 18:32:08 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 
 /* VARIABLES */
 
-# define MAP_WIDTH  7100
-# define MAP_HEIGHT 7100
-# define IMG_W 50
-# define IMG_H 50
+# define MAP_WIDTH  2500
+# define MAP_HEIGHT 2500
+# define IMG_W 32
+# define IMG_H 32
 
 /* STRUCTS */
 
