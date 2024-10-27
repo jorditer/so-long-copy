@@ -6,7 +6,7 @@
 /*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/27 18:32:08 by antandre         ###   ########.fr       */
+/*   Updated: 2024/10/27 21:00:12 by antandre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_txt
 	mlx_texture_t	*floor;
 	mlx_texture_t	*wall;
 	mlx_texture_t	*exit1;
-	mlx_texture_t *exit2;
+	mlx_texture_t	*exit2;
 	mlx_texture_t	*pnj;
 	mlx_texture_t	*collect;
 }							t_txt;
@@ -48,7 +48,7 @@ typedef struct s_img
 	mlx_image_t	*floor;
 	mlx_image_t	*wall;
 	mlx_image_t	*exit1;
-	mlx_image_t *exit2;
+	mlx_image_t	*exit2;
 	mlx_image_t	*pnj;
 	mlx_image_t	*collect;
 }				t_img;
