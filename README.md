@@ -102,6 +102,18 @@ The map file passed as an argument to the game must adhere to the following rule
 
 # Implementation
 
+- #### [Error Handling](#error-handling)
+- #### [Utility](#utility)
+- #### [Map Parsing](#map-parsing)
+- #### [Map Checking](#map-checking)
+- #### [Map Cleanup](#map-cleanup)
+- #### [Graphics](#graphics)
+- #### [Hooks](#hooks)
+- #### [Logic](#logic)
+- #### [So_long](#so-long)
+
+<br>
+
 ## Error handling
 
 ### [ft_error](src/errors.c)
@@ -693,7 +705,7 @@ int	map_checker(t_game *game)
 
 <br>
 
-## Map freeing
+## Map Cleanup
 
 ### [free_map_array](src/errors.c)
 
@@ -1264,7 +1276,7 @@ void	finish_game(t_game *game, int y, int x)
 
 <br>
 
-## so_long
+## So_long
 
 ### [so_long](src/so_long.c)
 
