@@ -111,42 +111,11 @@ The map file passed as an argument to the game must adhere to the following rule
 - #### [Graphics](#graphics)
 - #### [Hooks](#hooks)
 - #### [Logic](#logic)
-- #### [So_long](#so_long)
+- #### [Main](#main)
 
 <br>
 
 ## Error Handling
-Contenido para Error Handling...
-
-## Utility
-Contenido para Utility...
-
-## Map Parsing
-Contenido para Map Parsing...
-
-## Map Checking
-Contenido para Map Checking...
-
-## Map Cleanup
-Contenido para Map Cleanup...
-
-## Graphics
-Contenido para Graphics...
-
-## Hooks
-Contenido para Hooks...
-
-## Logic
-Contenido para Logic...
-
-## So_long
-Contenido para So_long...
-
-
-<br>
-
-## Error handling
-
 ### [ft_error](src/errors.c)
 
 The `ft_error` function displays an error message prefixed with `[ERROR]` and terminates the program with a non-zero exit status.
@@ -193,7 +162,6 @@ void	ft_error_clean(char *msg, t_game *game)
 <br>
 
 ## Utility
-
 ### [clean_up](src/delete.c)
 
 The `clean_up` function releases resources and memory allocated within the `game` structure, ensuring no memory leaks when the game exits.
@@ -322,8 +290,7 @@ void	init_value(t_game *game)
 
 <br>
 
-## Map parsing
-
+## Map Parsing
 ### [map_calloc](src/map_parser.c)
 
 The `map_calloc` function allocates memory for the `map.array` in the `game` structure, ensuring it can store up to 270 rows of map data.
@@ -472,8 +439,8 @@ static void	copy_map(t_game *game)
 
 <br>
 
-## Map checking
 
+## Map Checking
 ### [is_rectangular](src/map_checker.c)
 
 The `is_rectangular` function checks whether the map in the `game` structure is rectangular by verifying that each row has the same length as the first row.
@@ -736,8 +703,8 @@ int	map_checker(t_game *game)
 
 <br>
 
-## Map Cleanup
 
+## Map Cleanup
 ### [free_map_array](src/errors.c)
 
 The `free_map_array` function deallocates memory for a 2D array representing the map.
@@ -824,7 +791,6 @@ void	free_map(t_game *game)
 <br>
 
 ## Graphics
-
 ### [init_textures](src/graphics.c)
 
 The `init_textures` function initializes the textures for the game by allocating memory and loading the necessary image files.
@@ -1093,8 +1059,8 @@ void	delete_images(t_game *game)
 
 <br>
 
-## Hooks
 
+## Hooks
 ### [move_functions](src/hooks.c)
 
 The movement functions (`move_up`, `move_down`, `move_right`, `move_left`) update the position of the player character in the game based on user input. Each function checks if the next tile in the respective direction is not a wall before moving the character.
@@ -1202,7 +1168,6 @@ void	my_key_hook(mlx_key_data_t keydata, void *param)
 <br>
 
 ## Logic
-
 ### [del_collect](src/logic.c)
 
 The `del_collect` function removes a collectible item from the game when the player character interacts with it. It updates the collectible's state to disabled, effectively making it no longer visible or collectible.
@@ -1307,8 +1272,7 @@ void	finish_game(t_game *game, int y, int x)
 
 <br>
 
-## So_long
-
+## Main
 ### [so_long](src/so_long.c)
 
 The `so_long` or `main` function serves as the entry point for the game application. It initializes the game, processes command-line arguments, and sets up the graphical interface.
