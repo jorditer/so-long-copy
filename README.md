@@ -102,6 +102,7 @@ The map file passed as an argument to the game must adhere to the following rule
 
 # Implementation
 
+# Table of Contents
 - #### [Error Handling](#error-handling)
 - #### [Utility](#utility)
 - #### [Map Parsing](#map-parsing)
@@ -110,7 +111,37 @@ The map file passed as an argument to the game must adhere to the following rule
 - #### [Graphics](#graphics)
 - #### [Hooks](#hooks)
 - #### [Logic](#logic)
-- #### [So_long](#so-long)
+- #### [So_long](#so_long)
+
+<br>
+
+## Error Handling
+Contenido para Error Handling...
+
+## Utility
+Contenido para Utility...
+
+## Map Parsing
+Contenido para Map Parsing...
+
+## Map Checking
+Contenido para Map Checking...
+
+## Map Cleanup
+Contenido para Map Cleanup...
+
+## Graphics
+Contenido para Graphics...
+
+## Hooks
+Contenido para Hooks...
+
+## Logic
+Contenido para Logic...
+
+## So_long
+Contenido para So_long...
+
 
 <br>
 
