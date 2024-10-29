@@ -102,19 +102,6 @@ The map file passed as an argument to the game must adhere to the following rule
 
 # Implementation
 
-# Table of Contents
-- #### [Error Handling](#error-handling)
-- #### [Utility](#utility)
-- #### [Map Parsing](#map-parsing)
-- #### [Map Checking](#map-checking)
-- #### [Map Cleanup](#map-cleanup)
-- #### [Graphics](#graphics)
-- #### [Hooks](#hooks)
-- #### [Logic](#logic)
-- #### [Main](#main)
-
-<br>
-
 ## Error Handling
 ### [ft_error](src/errors.c)
 
