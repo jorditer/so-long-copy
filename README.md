@@ -39,7 +39,7 @@
 
 ## Project Summary
 
-This project is designed to enhance your skills in C programming and graphical management using MiniLibX. You will work with event handling, window management, and the display of 2D textures to create a small game. The game involves navigating a character through a maze, collecting items, and reaching an exit.
+This project is designed to enhance your skills in C programming and graphical management using MLX42. You will work with event handling, window management, and the display of 2D textures to create a small game. The game involves navigating a character through a maze, collecting items, and reaching an exit.
 
 <br>
 
