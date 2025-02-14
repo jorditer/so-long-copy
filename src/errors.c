@@ -6,19 +6,19 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:16:33 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:44:15 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error(char *msg)
+void	ft_error(const char *msg)
 {
 	ft_printf("[ERROR] %s\n", msg);
 	exit(1);
 }
 
-void	ft_error_clean(char *msg, t_game *game)
+void	ft_error_clean(const char *msg, t_game *game)
 {
 	ft_printf("[ERROR] %s\n", msg);
 	clean_up(game);
@@ -57,7 +57,7 @@ static void	free_map_info(char **vector)
 
 void	free_map(t_game *game)
 {
-	free_map_array(game->map.array, game->map.columns);
-	if (game->map.info != NULL)
-		free_map_info(game->map.info);
+	free_map_array(game->map.arr, game->map.columns);
+	if (game->map.map_copy != NULL)
+		free_map_info(game->map.map_copy);
 }

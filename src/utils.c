@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:16:39 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:40:25 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	init_value(t_game *game_instance)
 	game_instance->map.player = 0;
 	game_instance->map.walls = 0;
 	game_instance->map.floor = 0;
-	game_instance->map.info = NULL;
+	game_instance->map.map_copy = NULL;
 	game_instance->map.exit_found = 0;
 	game_instance->count = 0;
 	game_instance->finish_game = 0;
-	game_instance->map.array = NULL;
+	game_instance->map.arr = NULL;
 	game_instance->txt = NULL;
 	game_instance->img = NULL;
 	game_instance->mlx = NULL;

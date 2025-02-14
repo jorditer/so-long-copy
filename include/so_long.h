@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:18:27 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:45:16 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	char	**array;
-	char	**info;
-	int		columns;
 	int		rows;
+	int		columns;
 	int		collect;
-	int		player;
 	int		exit;
+	int		player;
 	int		walls;
 	int		floor;
 	int		exit_found;
-}				t_map;
+	char	**arr;
+	char	**map_copy;
+}	t_map;
 
 typedef struct s_position
 {
@@ -70,19 +70,19 @@ typedef struct s_position
 
 typedef struct s_game
 {
-	mlx_t						*mlx;
-	int							fd;
-	struct s_txt				*txt;
-	struct s_img				*img;
-	t_map						map;
-	t_position					position;
-	int							count;
-	int							finish_game;
-}				t_game;
+	int		fd;
+	int		count;
+	int		finish_game;
+	void	*mlx;
+	t_map	map;
+	t_img	*img;
+	t_txt	*txt;
+	t_position	position;
+}	t_game;
 
 // errors.c
-void	ft_error(char *msg);
-void	ft_error_clean(char *msg, t_game *game);
+void	ft_error(const char *msg);
+void	ft_error_clean(const char *msg, t_game *game);
 void	free_map(t_game *game);
 // parsing.c
 void	map_parser(t_game *game);
@@ -94,9 +94,9 @@ void	remove_textures(t_game *game);
 void	remove_images(t_game *game);
 // utils.c
 void	init_value(t_game *game);
-int		line_len(char *str);
 void	check_args(int argc, char **argv);
 void	clean_up(t_game *game);
+int	line_len(char *str);
 // logic.c
 void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	pick_collect(t_game *game, int y, int x);

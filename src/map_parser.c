@@ -6,59 +6,59 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:54:55 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:16:42 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:34:21 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	map_calloc(t_game *game_instance)
+static void	map_calloc(t_game *game)
 {
-	if (!game_instance->map.array)
+	if (!game->map.arr)
 	{
-		game_instance->map.array = ft_calloc(270, sizeof(char *));
-		if (!game_instance->map.array)
-			ft_error_clean("Error: Memory allocation for map failed.", game_instance);
+		game->map.arr = ft_calloc(270, sizeof(char *));
+		if (!game->map.arr)
+			ft_error_clean("Error: Memory allocation for map failed.", game);
 	}
 }
 
-static void	map_len(t_game *game_instance, char *line, int i)
+static void	map_len(t_game *game, char *line, int i)
 {
 	int	len;
 
 	len = line_len(line);
 	if (i == 0)
-		game_instance->map.columns = len;
+		game->map.columns = len;
 	if (len >= MAP_WIDTH / IMG_W)
-		ft_error_clean("Error: Map file too long.", game_instance);
+		ft_error_clean("Error: Map file too long.", game);
 	return ;
 }
 
-void	map_parser(t_game *game_instance)
+void	map_parser(t_game *game)
 {
 	char	*line;
 	int		i;
 
-	line = get_next_line(game_instance->fd);
+	line = get_next_line(game->fd);
 	if (line == NULL)
-		ft_error_clean("Error: Map file is empty.", game_instance);
+		ft_error_clean("Error: Map file is empty.", game);
 	i = 0;
 	while (line && (line[0] != '\n'))
 	{
 		if (i >= MAP_HEIGHT / IMG_H)
-			ft_error_clean("Error: Map file too high.", game_instance);
-		if (game_instance->map.array == NULL)
-			map_calloc(game_instance);
-		game_instance->map.array[i] = malloc(sizeof(char) * (line_len(line) + 1));
-		if (!game_instance->map.array[i])
-			ft_error_clean("Error: Error allocating map rows", game_instance);
-		map_len(game_instance, line, i);
-		ft_strlcpy(game_instance->map.array[i], line, game_instance->map.columns + 1);
+			ft_error_clean("Error: Map file too high.", game);
+		if (game->map.arr == NULL)
+			map_calloc(game);
+		game->map.arr[i] = malloc(sizeof(char) * (line_len(line) + 1));
+		if (!game->map.arr[i])
+			ft_error_clean("Error: Error allocating map rows", game);
+		map_len(game, line, i);
+		ft_strlcpy(game->map.arr[i], line, game->map.columns + 1);
 		i++;
 		free(line);
-		line = get_next_line(game_instance->fd);
+		line = get_next_line(game->fd);
 	}
-	game_instance->map.rows = i;
+	game->map.rows = i;
 	free(line);
-	close(game_instance->fd);
+	close(game->fd);
 }

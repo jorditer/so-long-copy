@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:35:06 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:42:17 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:47:46 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game_instance;
+	t_game	game;
 
 	check_args(argc, argv);
-	game_instance.fd = open(argv[1], O_RDONLY);
-	if (game_instance.fd < 0 || game_instance.fd == 0)
+	game.fd = open(argv[1], O_RDONLY);
+	if (game.fd < 0 || game.fd == 0)
 		ft_error("Failed to open file");
-	init_value(&game_instance);
-	map_parser(&game_instance);
-	if (map_checker(&game_instance) == 0)
+	init_value(&game);
+	map_parser(&game);
+	if (map_checker(&game) == 0)
 	{
 		mlx_set_setting(MLX_STRETCH_IMAGE, true);
-		game_instance.mlx = mlx_init(IMG_W * game_instance.map.columns, \
-				IMG_H * game_instance.map.rows, "so_long", true);
-		if (!game_instance.mlx)
+		game.mlx = mlx_init(IMG_W * game.map.columns, \
+				IMG_H * game.map.rows, "so_long", true);
+		if (!game.mlx)
 		{
-			ft_error_clean("Fail initializing MLX", &game_instance);
+			ft_error_clean("Fail initializing MLX", &game);
 			return (1);
 		}
-		init_graphics(&game_instance);
-		mlx_key_hook(game_instance.mlx, &my_key_hook, &game_instance.mlx);
-		mlx_loop(game_instance.mlx);
+		init_graphics(&game);
+		mlx_key_hook(game.mlx, &my_key_hook, &game);
+		mlx_loop(game.mlx);
 	}
-	clean_up(&game_instance);
+	clean_up(&game);
 	return (0);
 }

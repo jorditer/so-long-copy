@@ -6,59 +6,59 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:47:21 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:16:40 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:42:53 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	copy_map(t_game *game_instance)
+static void	copy_map(t_game *game)
 {
 	int	i;
 
-	if (!game_instance->map.info)
+	if (!game->map.map_copy)
 	{
-		game_instance->map.info = (char **)malloc(sizeof(char *) * (game_instance->map.rows + 1));
-		if (!game_instance->map.info)
-			ft_error_clean("Error: Allocation failed for map rows info.", game_instance);
+		game->map.map_copy = malloc(sizeof(char *) * (game->map.rows + 1));
+		if (!game->map.map_copy)
+			ft_error_clean("Error: Allocation failed for map rows info.", game);
 		i = 0;
-		while (i < game_instance->map.rows)
+		while (i < game->map.rows)
 		{
-			game_instance->map.info[i] = malloc(sizeof(char) * (game_instance->map.columns + 1));
-			if (!game_instance->map.info[i])
-				ft_error_clean("Error: Allocation failed for map columns info.", game_instance);
-			ft_strlcpy(game_instance->map.info[i], game_instance->map.array[i], \
-					game_instance->map.columns + 1);
+			game->map.map_copy[i] = malloc(1 * (game->map.columns + 1));
+			if (!game->map.map_copy[i])
+				ft_error_clean("Error: Allocation failed for columns", game);
+			ft_strlcpy(game->map.map_copy[i], game->map.arr[i], \
+					game->map.columns + 1);
 			i++;
 		}
-		game_instance->map.info[i] = NULL;
+		game->map.map_copy[i] = NULL;
 	}
 }
 
-void	flood_fill(t_game *game_instance, int x, int y, int *collect)
+void	flood_fill(t_game *game, int x, int y, int *collect)
 {
-	if (x < 0 || y < 0 || x >= game_instance->map.columns || y >= game_instance->map.rows
-		|| game_instance->map.info[y][x] == '1' || game_instance->map.info[y][x] == 'V')
+	if (x < 0 || y < 0 || x >= game->map.columns || y >= game->map.rows
+		|| game->map.map_copy[y][x] == '1' || game->map.map_copy[y][x] == 'V')
 		return ;
-	if (game_instance->map.info[y][x] == 'C')
+	if (game->map.map_copy[y][x] == 'C')
 		(*collect)--;
-	if (game_instance->map.info[y][x] == 'E')
-		game_instance->map.exit_found = 1;
-	game_instance->map.info[y][x] = 'V';
-	flood_fill(game_instance, x + 1, y, collect);
-	flood_fill(game_instance, x - 1, y, collect);
-	flood_fill(game_instance, x, y + 1, collect);
-	flood_fill(game_instance, x, y - 1, collect);
+	if (game->map.map_copy[y][x] == 'E')
+		game->map.exit_found = 1;
+	game->map.map_copy[y][x] = 'V';
+	flood_fill(game, x + 1, y, collect);
+	flood_fill(game, x - 1, y, collect);
+	flood_fill(game, x, y + 1, collect);
+	flood_fill(game, x, y - 1, collect);
 }
 
-int	pathfinding(t_game *game_instance)
+int	pathfinding(t_game *game)
 {
 	int	collect;
 
-	collect = game_instance->map.collect;
-	copy_map(game_instance);
-	flood_fill(game_instance, game_instance->position.x, game_instance->position.y, &collect);
-	if (collect > 0 || !game_instance->map.exit_found)
+	collect = game->map.collect;
+	copy_map(game);
+	flood_fill(game, game->position.x, game->position.y, &collect);
+	if (collect > 0 || !game->map.exit_found)
 		ft_error("Error: Not all collectibles or exit are reachable.");
 	return (0);
 }
