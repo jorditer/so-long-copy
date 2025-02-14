@@ -3,110 +3,110 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
+/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/08 18:50:15 by antandre         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:45:05 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	is_rectangular(t_game *game)
+static int	is_rectangular(t_game *game_instance)
 {
 	size_t	len;
 	int		i;
 
-	if (!game->map.array || !game->map.array[0])
+	if (!game_instance->map.array || !game_instance->map.array[0])
 		ft_error("Map is empty or invalid.");
-	len = ft_strlen(game->map.array[0]);
+	len = ft_strlen(game_instance->map.array[0]);
 	i = 1;
-	while (game->map.array[i])
+	while (game_instance->map.array[i])
 	{
-		if (ft_strlen(game->map.array[i]) != len)
+		if (ft_strlen(game_instance->map.array[i]) != len)
 			ft_error("Map is not rectangular.");
 		i++;
 	}
 	return (0);
 }
 
-static int	is_surrounded_by_walls(t_game *game)
+static int	is_surrounded_by_walls(t_game *game_instance)
 {
 	int	i;
 	int	last_row;
 
-	if (!game->map.array || !game->map.array[0])
+	if (!game_instance->map.array || !game_instance->map.array[0])
 		ft_error("Map is empty or invalid.");
 	last_row = 0;
-	while (game->map.array[last_row])
+	while (game_instance->map.array[last_row])
 		last_row++;
 	last_row--;
 	i = 0;
-	while (game->map.array[0][i] && game->map.array[last_row][i])
+	while (game_instance->map.array[0][i] && game_instance->map.array[last_row][i])
 	{
-		if (game->map.array[0][i] != '1' || game->map.array[last_row][i] != '1')
+		if (game_instance->map.array[0][i] != '1' || game_instance->map.array[last_row][i] != '1')
 			ft_error("Top or bottom row not enclosed by walls.");
 		i++;
 	}
 	i = 0;
-	while (game->map.array[i])
+	while (game_instance->map.array[i])
 	{
-		if (game->map.array[i][0] != '1'
-				|| game->map.array[i][ft_strlen(game->map.array[i]) - 1] != '1')
+		if (game_instance->map.array[i][0] != '1'
+				|| game_instance->map.array[i][ft_strlen(game_instance->map.array[i]) - 1] != '1')
 			ft_error("Left or right not enclosed by walls.");
 		i++;
 	}
 	return (0);
 }
 
-static void	invalid_components(t_game *game, int i, int j)
+static void	invalid_components(t_game *game_instance, int i, int j)
 {
-	if (game->map.array[i][j] != 'E' && game->map.array[i][j] != 'P'
-			&& game->map.array[i][j] != 'C' && game->map.array[i][j] != 'E'
-			&& game->map.array[i][j] != '1' && game->map.array[i][j] != '0')
+	if (game_instance->map.array[i][j] != 'E' && game_instance->map.array[i][j] != 'P'
+			&& game_instance->map.array[i][j] != 'C' && game_instance->map.array[i][j] != 'E'
+			&& game_instance->map.array[i][j] != '1' && game_instance->map.array[i][j] != '0')
 		ft_error("Invalid components.");
-	if (game->map.array[i][j] == 'P')
+	if (game_instance->map.array[i][j] == 'P')
 	{
-		game->map.player++;
-		game->position.x = j;
-		game->position.y = i;
+		game_instance->map.player++;
+		game_instance->position.x = j;
+		game_instance->position.y = i;
 	}
 }
 
-static int	validate_map_components(t_game *game)
+static int	validate_map_components(t_game *game_instance)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (game->map.array[i])
+	while (game_instance->map.array[i])
 	{
 		j = 0;
-		while (game->map.array[i][j])
+		while (game_instance->map.array[i][j])
 		{
-			if (game->map.array[i][j] == 'E')
-				game->map.exit++;
-			if (game->map.array[i][j] == 'C')
-				game->map.collect++;
-			invalid_components(game, i, j);
+			if (game_instance->map.array[i][j] == 'E')
+				game_instance->map.exit++;
+			if (game_instance->map.array[i][j] == 'C')
+				game_instance->map.collect++;
+			invalid_components(game_instance, i, j);
 			j++;
 		}
 		i++;
 	}
-	if (game->map.exit != 1 || game->map.player != 1 || game->map.collect < 1)
+	if (game_instance->map.exit != 1 || game_instance->map.player != 1 || game_instance->map.collect < 1)
 		ft_error("Invalid number of components.");
 	return (0);
 }
 
-int	map_checker(t_game *game)
+int	map_checker(t_game *game_instance)
 {
-	if (is_rectangular(game) == 1)
+	if (is_rectangular(game_instance) == 1)
 		return (1);
-	if (is_surrounded_by_walls(game) == 1)
+	if (is_surrounded_by_walls(game_instance) == 1)
 		return (1);
-	if (validate_map_components(game) == 1)
+	if (validate_map_components(game_instance) == 1)
 		return (1);
-	if (pathfinding(game) == 1)
+	if (pathfinding(game_instance) == 1)
 		return (1);
 	return (0);
 }

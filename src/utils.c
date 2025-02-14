@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
+/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 20:50:04 by antandre         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:45:04 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ void	check_args(int argc, char **argv)
 		ft_error("Invalid map extension.");
 }
 
-void	init_value(t_game *game)
+void	init_value(t_game *game_instance)
 {
-	game->position.x = 0;
-	game->position.y = 0;
-	game->position.move = 0;
-	game->map.rows = 0;
-	game->map.columns = 0;
-	game->map.collect = 0;
-	game->map.exit = 0;
-	game->map.player = 0;
-	game->map.walls = 0;
-	game->map.floor = 0;
-	game->map.info = NULL;
-	game->map.exit_found = 0;
-	game->count = 0;
-	game->finish_game = 0;
-	game->map.array = NULL;
-	game->txt = NULL;
-	game->img = NULL;
-	game->mlx = NULL;
+	game_instance->position.x = 0;
+	game_instance->position.y = 0;
+	game_instance->position.move = 0;
+	game_instance->map.rows = 0;
+	game_instance->map.columns = 0;
+	game_instance->map.collect = 0;
+	game_instance->map.exit = 0;
+	game_instance->map.player = 0;
+	game_instance->map.walls = 0;
+	game_instance->map.floor = 0;
+	game_instance->map.info = NULL;
+	game_instance->map.exit_found = 0;
+	game_instance->count = 0;
+	game_instance->finish_game = 0;
+	game_instance->map.array = NULL;
+	game_instance->txt = NULL;
+	game_instance->img = NULL;
+	game_instance->mlx = NULL;
 }

@@ -3,28 +3,29 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antandre <antandre@student.42barcel>       +#+  +:+       +#+         #
+#    By: jordi <jordi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/20 15:56:18 by antandre          #+#    #+#              #
-#    Updated: 2024/10/27 19:29:57 by antandre         ###   ########.fr        #
+#    Created: 2025/02/14 21:11:29 by jordi             #+#    #+#              #
+#    Updated: 2025/02/14 23:00:57 by jordi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Tool and flag definitions
-RM = rm -f                 # Command to remove files
-MKDIR_P = mkdir -p         # Command to create directories
+RM = rm -f
+MKDIR_P = mkdir -p
 
-CC = cc                    # C compiler
-CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -g # Compiler flags
+CC = cc
+CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -g
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 
-# Target definitions
 NAME = so_long
 
-SRC = $(shell find src -name "*.c")
+DIR_SRC = src/
+SRC = $(addprefix $(DIR_SRC), delete.c errors.c graphics.c hooks.c \
+    logic.c map_checker.c pathfinding.c map_parser.c so_long.c utils.c)
+
 OBJ = $(patsubst src/%.c,bin/%.o,$(SRC))
-DEPS = $(patsubst src/%.c,bin/%.d,$(SRC))
 
 LIBS := $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
 HEADERS	:= -Iinclude -I $(LIBMLX)/include -I $(LIBFT)/include
@@ -32,55 +33,48 @@ HEADERS	:= -Iinclude -I $(LIBMLX)/include -I $(LIBFT)/include
 # Number of source files
 NUM_SRC = $(words $(SRC))
 
-# Default target
-all: libmlx libft $(NAME)             # all target depends on $(NAME)
+all: libmlx libft $(NAME)
 
-#Rules to create the libraries
-libmlx:
+libmlx: $(LIBMLX)/build/libmlx42.a
+
+$(LIBMLX)/build/libmlx42.a:
 	@echo "Building libmlx..."
 	@cmake -Wno-dev -S $(LIBMLX) -B $(LIBMLX)/build -DCMAKE_BUILD_TYPE=Debug > /dev/null 2>&1 && \
 	make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
-	@echo "libmlx built succesfully"
+	@echo "libmlx built successfully"
 
-libft:
+libft: $(LIBFT)/libft.a
+
+$(LIBFT)/libft.a:
 	@echo "Building libft..."
 	@$(MAKE) -C $(LIBFT) > /dev/null
-	@echo "libft built succesfully"
+	@echo "libft built successfully"
 
-# Rule to create the program
 $(NAME): $(OBJ)
 	@echo "Creating $(NAME)"
 	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "$(NAME) created successfully"
 
-# Rule to compile .c files to .o files in bin/
+
 bin/%.o: src/%.c
-	@$(MKDIR_P) $(dir $@)     # Create the directory for the object file if it doesn't exist
-	@$(CC) $(CCFLAGS) -MMD -c $< -o $@ $(HEADERS)
+	@$(MKDIR_P) $(dir $@)
+	@$(CC) $(CCFLAGS) -c $< -o $@ $(HEADERS)
 	@$(eval COUNT=$(shell expr $(COUNT) + 1))
 	@echo "[$(COUNT)/$(NUM_SRC)] Compiling $<\r"
 
-# Clean up object and dependency files
 clean:
-	@$(RM) -r bin/            # Remove the bin/ directory
+	@$(RM) -r bin/
 	@rm -rf $(LIBMLX)/build
 	@$(MAKE) --no-print-directory -C $(LIBFT) clean
 	@echo "Cleaned up object and dependency files"
 
-# Clean up everything including the static library
 fclean: clean
-	@$(RM) $(NAME)            # Remove the program
+	@$(RM) $(NAME)
 	@$(MAKE) --no-print-directory -C $(LIBFT) fclean
 	@echo "Cleaned up $(NAME)"
 
-# Rebuild everything
-re: fclean all                # Run fclean and then all
+re: fclean all
 
-# Include dependency files
--include $(DEPS)
-
-# Declare phony targets
 .PHONY: all, clean, fclean, re, libmlx, libft
 
-# Initialize progress counter
 COUNT = 0

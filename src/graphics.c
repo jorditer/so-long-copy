@@ -3,71 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antandre <antandre@student.42barcel>       +#+  +:+       +#+        */
+/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2024/10/22 20:39:47 by antandre         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:51:50 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	init_textures(t_game *game)
-{
-	game->txt = ft_calloc(1, sizeof(t_txt));
-	if (!game->txt)
-		ft_error_clean("Failled allocation for textures", game);
-	game->txt->floor = mlx_load_png("./assets/floor1.png");
-	game->txt->wall = mlx_load_png("./assets/wall.png");
-	game->txt->exit1 = mlx_load_png("./assets/exit1.png");
-	game->txt->exit2 = mlx_load_png("./assets/exit2.png");
-	game->txt->pnj = mlx_load_png("./assets/pnj.png");
-	game->txt->collect = mlx_load_png("./assets/collect.png");
-	if (!game->txt->floor || !game->txt->wall || !game->txt->exit1
-		|| !game->txt->exit2 || !game->txt->pnj || !game->txt->collect)
-		ft_error_clean("Failed loading textures", game);
-	return (0);
-}
-
-static int	init_images(t_game *game)
-{
-	game->img = ft_calloc(1, sizeof(t_img));
-	if (!game->img)
-		ft_error_clean("Failed allocation for images", game);
-	game->img->floor = mlx_texture_to_image(game->mlx, game->txt->floor);
-	game->img->wall = mlx_texture_to_image(game->mlx, game->txt->wall);
-	game->img->exit1 = mlx_texture_to_image(game->mlx, game->txt->exit1);
-	game->img->exit2 = mlx_texture_to_image(game->mlx, game->txt->exit2);
-	game->img->pnj = mlx_texture_to_image(game->mlx, game->txt->pnj);
-	game->img->collect = mlx_texture_to_image(game->mlx, game->txt->collect);
-	if (!game->img->floor || !game->img->wall || !game->img->exit1
-		|| !game->img->exit2 || !game->img->pnj || !game->img->collect)
-		ft_error_clean("Failed creating images from textures", game);
-	delete_textures(game);
-	return (0);
-}
-
-static void	draw_map(t_game *game)
+static void	draw_items(t_game *game_instance)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (game->map.array[y])
+	while (game_instance->map.array[y])
 	{
 		x = 0;
-		while (game->map.array[y][x])
+		while (game_instance->map.array[y][x])
 		{
-			mlx_image_to_window(game->mlx, game->img->floor, \
+			if (game_instance->map.array[y][x] == 'C')
+				mlx_image_to_window(game_instance->mlx, game_instance->img->collect, \
+						x * IMG_W, y * IMG_H);
+			if (game_instance->map.array[y][x] == 'P')
+				mlx_image_to_window(game_instance->mlx, game_instance->img->pnj, \
+						x * IMG_W, y * IMG_H);
+			x++;
+		}
+		y++;
+	}
+}
+
+static int	init_images(t_game *game_instance)
+{
+	game_instance->img = ft_calloc(1, sizeof(t_img));
+	if (!game_instance->img)
+		ft_error_clean("Failed allocation for images", game_instance);
+	game_instance->img->floor = mlx_texture_to_image(game_instance->mlx, game_instance->txt->floor);
+	game_instance->img->wall = mlx_texture_to_image(game_instance->mlx, game_instance->txt->wall);
+	game_instance->img->exit1 = mlx_texture_to_image(game_instance->mlx, game_instance->txt->exit1);
+	game_instance->img->exit2 = mlx_texture_to_image(game_instance->mlx, game_instance->txt->exit2);
+	game_instance->img->pnj = mlx_texture_to_image(game_instance->mlx, game_instance->txt->pnj);
+	game_instance->img->collect = mlx_texture_to_image(game_instance->mlx, game_instance->txt->collect);
+	if (!game_instance->img->floor || !game_instance->img->wall || !game_instance->img->exit1
+		|| !game_instance->img->exit2 || !game_instance->img->pnj || !game_instance->img->collect)
+		ft_error_clean("Failed creating images from textures", game_instance);
+	delete_textures(game_instance);
+	return (0);
+}
+
+static int	init_textures(t_game *game_instance)
+{
+	game_instance->txt = ft_calloc(1, sizeof(t_txt));
+	if (!game_instance->txt)
+		ft_error_clean("Failled allocation for textures", game_instance);
+	game_instance->txt->floor = mlx_load_png("./assets/floor1.png");
+	game_instance->txt->wall = mlx_load_png("./assets/wall.png");
+	game_instance->txt->exit1 = mlx_load_png("./assets/exit1.png");
+	game_instance->txt->exit2 = mlx_load_png("./assets/exit2.png");
+	game_instance->txt->pnj = mlx_load_png("./assets/pnj.png");
+	game_instance->txt->collect = mlx_load_png("./assets/collect.png");
+	if (!game_instance->txt->floor || !game_instance->txt->wall || !game_instance->txt->exit1
+		|| !game_instance->txt->exit2 || !game_instance->txt->pnj || !game_instance->txt->collect)
+		ft_error_clean("Failed loading textures", game_instance);
+	return (0);
+}
+
+static void	draw_map(t_game *game_instance)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game_instance->map.array[y])
+	{
+		x = 0;
+		while (game_instance->map.array[y][x])
+		{
+			mlx_image_to_window(game_instance->mlx, game_instance->img->floor, \
 					x * IMG_W, y * IMG_H);
-			if (game->map.array[y][x] == '1')
-				mlx_image_to_window(game->mlx, game->img->wall, \
+			if (game_instance->map.array[y][x] == '1')
+				mlx_image_to_window(game_instance->mlx, game_instance->img->wall, \
 						x * IMG_W, y * IMG_H);
-			if (game->map.array[y][x] == 'E')
+			if (game_instance->map.array[y][x] == 'E')
 			{
-				mlx_image_to_window(game->mlx, game->img->exit2, \
+				mlx_image_to_window(game_instance->mlx, game_instance->img->exit2, \
 						x * IMG_W, y * IMG_H);
-				mlx_image_to_window(game->mlx, game->img->exit1, \
+				mlx_image_to_window(game_instance->mlx, game_instance->img->exit1, \
 						x * IMG_W, y * IMG_H);
 			}
 			x++;
@@ -76,33 +99,10 @@ static void	draw_map(t_game *game)
 	}
 }
 
-static void	draw_items(t_game *game)
+void	init_graphics(t_game *game_instance)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->map.array[y])
-	{
-		x = 0;
-		while (game->map.array[y][x])
-		{
-			if (game->map.array[y][x] == 'C')
-				mlx_image_to_window(game->mlx, game->img->collect, \
-						x * IMG_W, y * IMG_H);
-			if (game->map.array[y][x] == 'P')
-				mlx_image_to_window(game->mlx, game->img->pnj, \
-						x * IMG_W, y * IMG_H);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	init_graphics(t_game *game)
-{
-	init_textures(game);
-	init_images(game);
-	draw_map(game);
-	draw_items(game);
+	init_textures(game_instance);
+	init_images(game_instance);
+	draw_map(game_instance);
+	draw_items(game_instance);
 }
