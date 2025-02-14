@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:34:50 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 00:01:10 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static int	init_textures(t_game *game)
 	game->txt = ft_calloc(1, sizeof(t_txt));
 	if (!game->txt)
 		ft_error_clean("Error: Failed allocation for textures", game);
-	game->txt->floor = mlx_load_png("./assets/floor1.png");
-	game->txt->wall = mlx_load_png("./assets/wall.png");
-	game->txt->exit1 = mlx_load_png("./assets/exit1.png");
-	game->txt->exit2 = mlx_load_png("./assets/exit2.png");
-	game->txt->pnj = mlx_load_png("./assets/pnj.png");
-	game->txt->collect = mlx_load_png("./assets/collect.png");
+	game->txt->floor = mlx_load_png("./imgs/floor1.png");
+	game->txt->wall = mlx_load_png("./imgs/wall.png");
+	game->txt->exit1 = mlx_load_png("./imgs/exit1.png");
+	game->txt->exit2 = mlx_load_png("./imgs/exit2.png");
+	game->txt->pnj = mlx_load_png("./imgs/pnj.png");
+	game->txt->collect = mlx_load_png("./imgs/collect.png");
 	if (!game->txt->floor || !game->txt->wall || !game->txt->exit1
 		|| !game->txt->exit2 || !game->txt->pnj || !game->txt->collect)
 		ft_error_clean("Error: Failed loading textures", game);

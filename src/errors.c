@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:44:15 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:56:42 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_error(const char *msg)
 {
-	ft_printf("[ERROR] %s\n", msg);
+	ft_printf("ERROR %s\n", msg);
 	exit(1);
 }
 
 void	ft_error_clean(const char *msg, t_game *game)
 {
-	ft_printf("[ERROR] %s\n", msg);
+	ft_printf("ERROR %s\n", msg);
 	clean_up(game);
 	exit(1);
 }
