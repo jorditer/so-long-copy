@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 11:20:42 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:16 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:23:07 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	move_up(t_game *game_instance, int y, int x)
 	{
 		game_instance->img->pnj->instances[0].y -= IMG_W;
 		game_instance->position.move++;
-		ft_printf("MOVES: %i\n", game_instance->position.move);
+		ft_printf("[MOVEMENT: %i]\n", game_instance->position.move);
 	}
 }
 
@@ -28,7 +28,7 @@ static void	move_down(t_game *game_instance, int y, int x)
 	{
 		game_instance->img->pnj->instances[0].y += IMG_W;
 		game_instance->position.move++;
-		ft_printf("MOVES: %i\n", game_instance->position.move);
+		ft_printf("[MOVEMENT: %i]\n", game_instance->position.move);
 	}
 }
 
@@ -38,7 +38,7 @@ static void	move_right(t_game *game_instance, int y, int x)
 	{
 		game_instance->img->pnj->instances[0].x += IMG_H;
 		game_instance->position.move++;
-		ft_printf("MOVES: %i\n", game_instance->position.move);
+		ft_printf("[MOVEMENT: %i]\n", game_instance->position.move);
 	}
 }
 
@@ -48,7 +48,7 @@ static void	move_left(t_game *game_instance, int y, int x)
 	{
 		game_instance->img->pnj->instances[0].x -= IMG_H;
 		game_instance->position.move++;
-		ft_printf("MOVES: %i\n", game_instance->position.move);
+		ft_printf("[MOVEMENT: %i]\n", game_instance->position.move);
 	}
 }
 

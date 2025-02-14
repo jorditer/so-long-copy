@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:01 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:05 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:16:44 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	is_rectangular(t_game *game_instance)
 	int		i;
 
 	if (!game_instance->map.array || !game_instance->map.array[0])
-		ft_error("Map is empty or invalid.");
+		ft_error("Error: Map is empty or invalid.");
 	len = ft_strlen(game_instance->map.array[0]);
 	i = 1;
 	while (game_instance->map.array[i])
 	{
 		if (ft_strlen(game_instance->map.array[i]) != len)
-			ft_error("Map is not rectangular.");
+			ft_error("Error: Map is not rectangular.");
 		i++;
 	}
 	return (0);
@@ -36,7 +36,7 @@ static int	is_surrounded_by_walls(t_game *game_instance)
 	int	last_row;
 
 	if (!game_instance->map.array || !game_instance->map.array[0])
-		ft_error("Map is empty or invalid.");
+		ft_error("Error: Map is empty or invalid.");
 	last_row = 0;
 	while (game_instance->map.array[last_row])
 		last_row++;
@@ -45,7 +45,7 @@ static int	is_surrounded_by_walls(t_game *game_instance)
 	while (game_instance->map.array[0][i] && game_instance->map.array[last_row][i])
 	{
 		if (game_instance->map.array[0][i] != '1' || game_instance->map.array[last_row][i] != '1')
-			ft_error("Top or bottom row not enclosed by walls.");
+			ft_error("Error: Top or bottom row not enclosed by walls.");
 		i++;
 	}
 	i = 0;
@@ -53,7 +53,7 @@ static int	is_surrounded_by_walls(t_game *game_instance)
 	{
 		if (game_instance->map.array[i][0] != '1'
 				|| game_instance->map.array[i][ft_strlen(game_instance->map.array[i]) - 1] != '1')
-			ft_error("Left or right not enclosed by walls.");
+			ft_error("Error: Left or right not enclosed by walls.");
 		i++;
 	}
 	return (0);
@@ -64,7 +64,7 @@ static void	invalid_components(t_game *game_instance, int i, int j)
 	if (game_instance->map.array[i][j] != 'E' && game_instance->map.array[i][j] != 'P'
 			&& game_instance->map.array[i][j] != 'C' && game_instance->map.array[i][j] != 'E'
 			&& game_instance->map.array[i][j] != '1' && game_instance->map.array[i][j] != '0')
-		ft_error("Invalid components.");
+		ft_error("Error: Invalid components.");
 	if (game_instance->map.array[i][j] == 'P')
 	{
 		game_instance->map.player++;
@@ -94,7 +94,7 @@ static int	validate_map_components(t_game *game_instance)
 		i++;
 	}
 	if (game_instance->map.exit != 1 || game_instance->map.player != 1 || game_instance->map.collect < 1)
-		ft_error("Invalid number of components.");
+		ft_error("Error: Invalid number of components.");
 	return (0);
 }
 

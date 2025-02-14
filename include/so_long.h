@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:12 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:18:27 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int		map_checker(t_game *game);
 int		pathfinding(t_game *game);
 // graphic.s
 void	init_graphics(t_game *game);
-void	delete_textures(t_game *game);
-void	delete_images(t_game *game);
+void	remove_textures(t_game *game);
+void	remove_images(t_game *game);
 // utils.c
 void	init_value(t_game *game);
 int		line_len(char *str);

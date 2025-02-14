@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:47:21 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:11 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:16:40 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	copy_map(t_game *game_instance)
 	{
 		game_instance->map.info = (char **)malloc(sizeof(char *) * (game_instance->map.rows + 1));
 		if (!game_instance->map.info)
-			ft_error_clean("Allocation failed for map rows info.", game_instance);
+			ft_error_clean("Error: Allocation failed for map rows info.", game_instance);
 		i = 0;
 		while (i < game_instance->map.rows)
 		{
 			game_instance->map.info[i] = malloc(sizeof(char) * (game_instance->map.columns + 1));
 			if (!game_instance->map.info[i])
-				ft_error_clean("Allocation failed for map columns info.", game_instance);
+				ft_error_clean("Error: Allocation failed for map columns info.", game_instance);
 			ft_strlcpy(game_instance->map.info[i], game_instance->map.array[i], \
 					game_instance->map.columns + 1);
 			i++;
@@ -59,6 +59,6 @@ int	pathfinding(t_game *game_instance)
 	copy_map(game_instance);
 	flood_fill(game_instance, game_instance->position.x, game_instance->position.y, &collect);
 	if (collect > 0 || !game_instance->map.exit_found)
-		ft_error("Not all collectibles or exit are reachable.");
+		ft_error("Error: Not all collectibles or exit are reachable.");
 	return (0);
 }

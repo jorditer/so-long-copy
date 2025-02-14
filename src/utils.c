@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:06:09 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:04 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:16:39 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	check_args(int argc, char **argv)
 	int	map_len;
 
 	if (argc != 2)
-		ft_error("Invalid number of arguments.");
+		ft_error("Error: Invalid number of arguments.");
 	map_len = ft_strlen(argv[1]);
 	if (ft_strnstr(&argv[1][map_len - 4], ".ber", 4) == NULL)
-		ft_error("Invalid map extension.");
+		ft_error("Error: Invalid map extension.");
 }
 
 void	init_value(t_game *game_instance)

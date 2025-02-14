@@ -6,7 +6,7 @@
 /*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:44:50 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 22:51:50 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:17:27 by jordi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	init_images(t_game *game_instance)
 {
 	game_instance->img = ft_calloc(1, sizeof(t_img));
 	if (!game_instance->img)
-		ft_error_clean("Failed allocation for images", game_instance);
+		ft_error_clean("Error: Failed allocation for images", game_instance);
 	game_instance->img->floor = mlx_texture_to_image(game_instance->mlx, game_instance->txt->floor);
 	game_instance->img->wall = mlx_texture_to_image(game_instance->mlx, game_instance->txt->wall);
 	game_instance->img->exit1 = mlx_texture_to_image(game_instance->mlx, game_instance->txt->exit1);
@@ -48,8 +48,8 @@ static int	init_images(t_game *game_instance)
 	game_instance->img->collect = mlx_texture_to_image(game_instance->mlx, game_instance->txt->collect);
 	if (!game_instance->img->floor || !game_instance->img->wall || !game_instance->img->exit1
 		|| !game_instance->img->exit2 || !game_instance->img->pnj || !game_instance->img->collect)
-		ft_error_clean("Failed creating images from textures", game_instance);
-	delete_textures(game_instance);
+		ft_error_clean("Error: Failed creating images from textures", game_instance);
+	remove_textures(game_instance);
 	return (0);
 }
 
@@ -57,7 +57,7 @@ static int	init_textures(t_game *game_instance)
 {
 	game_instance->txt = ft_calloc(1, sizeof(t_txt));
 	if (!game_instance->txt)
-		ft_error_clean("Failled allocation for textures", game_instance);
+		ft_error_clean("Error: Failed allocation for textures", game_instance);
 	game_instance->txt->floor = mlx_load_png("./assets/floor1.png");
 	game_instance->txt->wall = mlx_load_png("./assets/wall.png");
 	game_instance->txt->exit1 = mlx_load_png("./assets/exit1.png");
@@ -66,7 +66,7 @@ static int	init_textures(t_game *game_instance)
 	game_instance->txt->collect = mlx_load_png("./assets/collect.png");
 	if (!game_instance->txt->floor || !game_instance->txt->wall || !game_instance->txt->exit1
 		|| !game_instance->txt->exit2 || !game_instance->txt->pnj || !game_instance->txt->collect)
-		ft_error_clean("Failed loading textures", game_instance);
+		ft_error_clean("Error: Failed loading textures", game_instance);
 	return (0);
 }
 
