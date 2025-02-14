@@ -6,13 +6,9 @@
 #    By: jordi <jordi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/14 21:11:29 by jordi             #+#    #+#              #
-#    Updated: 2025/02/14 23:00:57 by jordi            ###   ########.fr        #
+#    Updated: 2025/02/14 23:09:04 by jordi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# Tool and flag definitions
-RM = rm -f
-MKDIR_P = mkdir -p
 
 CC = cc
 CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -g
@@ -38,40 +34,40 @@ all: libmlx libft $(NAME)
 libmlx: $(LIBMLX)/build/libmlx42.a
 
 $(LIBMLX)/build/libmlx42.a:
-	@echo "Building libmlx..."
+	@echo "🛠️  Building MLX42 library..."
 	@cmake -Wno-dev -S $(LIBMLX) -B $(LIBMLX)/build -DCMAKE_BUILD_TYPE=Debug > /dev/null 2>&1 && \
 	make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
-	@echo "libmlx built successfully"
+	@echo "✅ MLX42 successfully built!\n"
 
 libft: $(LIBFT)/libft.a
 
 $(LIBFT)/libft.a:
-	@echo "Building libft..."
+	@echo "🛠️  Building Libft..."
 	@$(MAKE) -C $(LIBFT) > /dev/null
-	@echo "libft built successfully"
+	@echo "✅ Libft successfully built!\n"
 
 $(NAME): $(OBJ)
-	@echo "Creating $(NAME)"
+	@echo "🚧 Building $(NAME) executable..."
 	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $(NAME)
-	@echo "$(NAME) created successfully"
+	@echo "🎉 $(NAME) ready to play!\n"
 
 
 bin/%.o: src/%.c
-	@$(MKDIR_P) $(dir $@)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CCFLAGS) -c $< -o $@ $(HEADERS)
 	@$(eval COUNT=$(shell expr $(COUNT) + 1))
-	@echo "[$(COUNT)/$(NUM_SRC)] Compiling $<\r"
+	@printf "🔨 [%d/%d] Compiling %s\r" $(COUNT) $(NUM_SRC) $<
 
 clean:
-	@$(RM) -r bin/
+	@rm -f -r bin/
 	@rm -rf $(LIBMLX)/build
 	@$(MAKE) --no-print-directory -C $(LIBFT) clean
-	@echo "Cleaned up object and dependency files"
+	@echo "🧹 Cleaned up object files and build directories!\n"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@rm -f $(NAME)
 	@$(MAKE) --no-print-directory -C $(LIBFT) fclean
-	@echo "Cleaned up $(NAME)"
+	@echo "🧹 Executable and libraries cleaned!\n"
 
 re: fclean all
 
