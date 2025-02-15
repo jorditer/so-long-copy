@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 00:18:26 by jordi             #+#    #+#             */
-/*   Updated: 2025/02/15 00:18:30 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 11:46:17 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	map_len(t_game *game, char *line, int i)
 	len = line_len(line);
 	if (i == 0)
 		game->map.columns = len;
-	if (len >= MAP_WIDTH / IMG_W)
+	if (len >= MAP_W / IMG_W)
 		ft_error_clean("Error: Map file too long.", game);
 	return ;
 }
@@ -45,7 +45,7 @@ void	map_parser(t_game *game)
 	i = 0;
 	while (line && (line[0] != '\n'))
 	{
-		if (i >= MAP_HEIGHT / IMG_H)
+		if (i >= MAP_H / IMG_H)
 			ft_error_clean("Error: Map file too high.", game);
 		if (game->map.arr == NULL)
 			map_calloc(game);

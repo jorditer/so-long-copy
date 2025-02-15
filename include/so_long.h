@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/15 11:22:15 by jterrada         ###   ########.fr       */
+/*   Created: 2025/02/15 11:46:44 by jterrada          #+#    #+#             */
+/*   Updated: 2025/02/15 11:46:47 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../lib/Libft/headers/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define MAP_HEIGHT 2500
-# define MAP_WIDTH  2500
+# define MAP_H 2500
+# define MAP_W 2500
 # define IMG_H 32
 # define IMG_W 32
 
