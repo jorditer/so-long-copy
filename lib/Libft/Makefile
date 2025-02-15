@@ -1,67 +1,76 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: antandre <antandre@student.42barcel>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/20 15:56:18 by antandre          #+#    #+#              #
-#    Updated: 2024/09/24 16:19:08 by antandre         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-# Tool and flag definitions
-LIB = ar rcs               # Command to create static library
-RM = rm -f                 # Command to remove files
-MKDIR_P = mkdir -p         # Command to create directories
-
-CC = cc                    # C compiler
-CCFLAGS = -Wall -Wextra -Werror -Iinclude -g # Compiler flags
-
-# Target definitions
 NAME = libft.a
 
-# Source, object, and dependency files
-SRC = $(shell find src -name "*.c")                       # Find all .c files in src directory and subdirectories
-OBJ = $(patsubst src/%.c,bin/%.o,$(SRC))                  # Convert .c file paths to corresponding .o paths in bin/
-DEPS = $(patsubst src/%.c,bin/%.d,$(SRC))                 # Convert .c file paths to corresponding .d paths in bin/
+DEL_LINE =		\033[2K
+ITALIC =		\033[3m
+BOLD =			\033[1m
+DEF_COLOR =		\033[0;39m
+GRAY =			\033[0;90m
+RED =			\033[0;91m
+GREEN =			\033[0;92m
+YELLOW =		\033[0;93m
+BLUE =			\033[0;94m
+MAGENTA =		\033[0;95m
+CYAN =			\033[0;96m
+WHITE =			\033[0;97m
+BLACK =			\033[0;99m
+ORANGE =		\033[38;5;209m
+BROWN =			\033[38;2;184;143;29m
+DARK_GRAY =		\033[38;5;234m
+MID_GRAY =		\033[38;5;245m
+DARK_GREEN =	\033[38;2;75;179;82m
+DARK_YELLOW =	\033[38;5;143m
 
-# Number of source files
-NUM_SRC = $(words $(SRC))
+BASE_SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+        ft_toupper.c ft_tolower.c ft_strncmp.c ft_memcmp.c \
+        ft_strlen.c ft_strlcat.c ft_strlcpy.c ft_strchr.c ft_atoi.c \
+        ft_strrchr.c ft_strnstr.c ft_memset.c ft_memcpy.c ft_memmove.c \
+        ft_bzero.c ft_memchr.c ft_calloc.c ft_strdup.c ft_strjoin.c \
+        ft_strtrim.c ft_substr.c ft_split.c ft_putchar_fd.c \
+        ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c \
+        ft_striteri.c ft_itoa.c ft_lstnew.c
 
-# Default target
-all: $(NAME)             # all target depends on $(NAME)
+SRCS = $(addprefix src/, $(BASE_SRCS)) \
+       get_next_line/get_next_line.c \
+       printf/ft_printf.c printf/ft_put_char.c printf/ft_puthex.c \
+       printf/ft_put_nbr.c printf/ft_putpointer.c printf/ft_put_str.c \
+       printf/ft_putunsigned.c printf/ft_str_cpy.c
 
-# Rule to create the static library
-$(NAME): $(OBJ)
-	@echo "Creating library $(NAME)"
-	@$(LIB) $(NAME) $(OBJ)   # Create the static library from object files
-	@echo "Library $(NAME) created successfully"
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+        ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+        ft_lstmap.c
 
-# Rule to compile .c files to .o files in bin/
-bin/%.o: src/%.c
-	@$(MKDIR_P) $(dir $@)     # Create the directory for the object file if it doesn't exist
-	@$(CC) $(CCFLAGS) -MMD -c $< -o $@   # Compile the .c file to .o and generate dependency file
-	@$(eval COUNT=$(shell expr $(COUNT) + 1))
-	@echo "[$(COUNT)/$(NUM_SRC)] Compiling $<\r"
+INCLUDE = headers/libft.h
+CC = gcc
+RM = rm -f
+CFLAGS = -Wall -Wextra -Werror -I./headers
 
-# Clean up object and dependency files
+%.o: %.c
+	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
+	@${CC} ${CFLAGS} -c $< -o $@
+
+OBJS = ${SRCS:.c=.o}
+BONUS_OBJECTS = $(addprefix src/, ${BONUS:.c=.o})
+
+${NAME}: ${OBJS}
+	@ar -rsc ${NAME} ${OBJS}
+	@echo "\n$(GREEN) Created $(NAME) ✓ $(DEF_COLOR)\n"
+
+bonus: ${OBJS} ${BONUS_OBJECTS}
+	@ar -rsc $(NAME) $^
+	@touch $@
+	@echo "\n${GREEN} Bonus compiled successfully ✓ $(DEF_COLOR)\n"
+
+all: ${NAME}
+
 clean:
-	@$(RM) -r bin/            # Remove the bin/ directory
+	@${RM} ${OBJS} ${BONUS_OBJECTS}
+	@echo "\n${BLUE} ◎ $(RED)All objects cleaned successfully ${BLUE}◎$(DEF_COLOR)\n"
 
-# Clean up everything including the static library
 fclean: clean
-	@$(RM) $(NAME)            # Remove the static library
-	@echo "Cleaned up library $(NAME)"
+	@${RM} ${NAME}
+	@${RM} bonus
+	@echo "\n${BLUE} ◎ $(RED)All objects and executable cleaned successfully${BLUE} ◎$(DEF_COLOR)\n"
 
-# Rebuild everything
-re: fclean all                # Run fclean and then all
+re: fclean all
 
-# Include dependency files
--include $(DEPS)
-
-# Declare phony targets
 .PHONY: all clean fclean re
-
-# Initialize progress counter
-COUNT = 0

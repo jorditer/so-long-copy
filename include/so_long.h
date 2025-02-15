@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:32:25 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:45:16 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 11:22:15 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-# include "../lib/Libft/include/libft.h"
+# include "../lib/Libft/headers/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 # define MAP_HEIGHT 2500
