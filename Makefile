@@ -6,7 +6,7 @@
 #    By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/14 21:11:29 by jordi             #+#    #+#              #
-#    Updated: 2025/02/15 11:17:34 by jterrada         ###   ########.fr        #
+#    Updated: 2025/02/15 12:03:41 by jterrada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,10 @@ SRC = $(addprefix $(DIR_SRC), delete.c errors.c graphics.c hooks.c \
 	logic.c map_checker.c pathfinding.c map_parser.c so_long.c utils.c)
 
 OBJ = $(patsubst src/%.c,bin/%.o,$(SRC))
+# OBJ = $(SRC:.c=.o)
 
 LIBS := $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
-HEADERS	:= -Iinclude -I $(LIBMLX)/include -I $(LIBFT)/headers
+HEADERS	:= -Iinclude -I $(LIBMLX)/include -I $(LIBFT)/include
 
 # Number of source files
 NUM_SRC = $(words $(SRC))

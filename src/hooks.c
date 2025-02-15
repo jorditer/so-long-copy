@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 11:20:42 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:34:54 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 12:11:00 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,13 @@ void	my_key_hook(mlx_key_data_t keydata, void *param)
 	game = param;
 	y = &game->img->pnj->instances[0].y;
 	x = &game->img->pnj->instances[0].x;
-	if ((keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS))
+	if ((keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS))
 		move_up(game, *y, *x);
-	if ((keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS))
+	if ((keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS))
 		move_right(game, *y, *x);
-	if ((keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS))
+	if ((keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS))
 		move_down(game, *y, *x);
-	if ((keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS))
+	if ((keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS))
 		move_left(game, *y, *x);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
