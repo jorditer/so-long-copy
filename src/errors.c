@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:18:58 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:56:42 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 11:25:20 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_error(const char *msg)
 void	ft_error_clean(const char *msg, t_game *game)
 {
 	ft_printf("ERROR %s\n", msg);
+	if (game->mlx)
+        mlx_terminate(game->mlx);
 	clean_up(game);
 	exit(1);
 }

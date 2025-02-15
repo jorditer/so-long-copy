@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordi <jordi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:40:23 by antandre          #+#    #+#             */
-/*   Updated: 2025/02/14 23:40:10 by jordi            ###   ########.fr       */
+/*   Updated: 2025/02/15 11:25:46 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,16 @@ void	remove_images(t_game *game)
 	}
 }
 
-void	clean_up(t_game *game)
+void    clean_up(t_game *game)
 {
-	remove_images(game);
-	remove_textures(game);
-	if (game->mlx)
-		mlx_terminate(game->mlx);
-	if (game->map.arr || game->map.map_copy)
-		free_map(game);
-	if (game->fd > 0)
-		close(game->fd);
+    if (game->mlx)
+    {
+        remove_images(game);
+        remove_textures(game);
+        mlx_terminate(game->mlx);
+    }
+    if (game->map.arr || game->map.map_copy)
+        free_map(game);
+    if (game->fd > 0)
+        close(game->fd);
 }
