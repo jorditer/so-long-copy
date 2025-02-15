@@ -6,12 +6,13 @@
 #    By: jordi <jordi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/14 21:11:29 by jordi             #+#    #+#              #
-#    Updated: 2025/02/14 23:09:04 by jordi            ###   ########.fr        #
+#    Updated: 2025/02/15 00:32:49 by jordi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CCFLAGS = -Wall -Wextra -Werror -DDEBUG=1 -g
+CCFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+LDFLAGS = -fsanitize=address
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 
@@ -19,7 +20,7 @@ NAME = so_long
 
 DIR_SRC = src/
 SRC = $(addprefix $(DIR_SRC), delete.c errors.c graphics.c hooks.c \
-    logic.c map_checker.c pathfinding.c map_parser.c so_long.c utils.c)
+	logic.c map_checker.c pathfinding.c map_parser.c so_long.c utils.c)
 
 OBJ = $(patsubst src/%.c,bin/%.o,$(SRC))
 
@@ -48,9 +49,8 @@ $(LIBFT)/libft.a:
 
 $(NAME): $(OBJ)
 	@echo "🚧 Building $(NAME) executable..."
-	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBS) $(HEADERS) $(LDFLAGS) -o $(NAME)
 	@echo "🎉 $(NAME) ready to play!\n"
-
 
 bin/%.o: src/%.c
 	@mkdir -p $(dir $@)
