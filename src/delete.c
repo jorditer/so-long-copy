@@ -54,16 +54,16 @@ void	remove_images(t_game *game)
 	}
 }
 
-void    clean_up(t_game *game)
+void	clean_up(t_game *game)
 {
-    if (game->mlx)
-    {
-        remove_images(game);
-        remove_textures(game);
-        mlx_terminate(game->mlx);
-    }
-    if (game->map.arr || game->map.map_copy)
-        free_map(game);
-    if (game->fd > 0)
-        close(game->fd);
+	if (game->mlx)
+	{
+		remove_images(game);
+		remove_textures(game);
+		mlx_terminate(game->mlx);
+	}
+	if (game->map.arr || game->map.map_copy)
+		free_map(game);
+	if (game->fd > 0)
+		close(game->fd);
 }

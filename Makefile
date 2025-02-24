@@ -11,8 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CCFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-LDFLAGS = -fsanitize=address
+CCFLAGS = -Wall -Wextra -Werror
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 
@@ -23,7 +22,6 @@ SRC = $(addprefix $(DIR_SRC), delete.c errors.c graphics.c hooks.c \
 	logic.c map_checker.c pathfinding.c map_parser.c so_long.c utils.c)
 
 OBJ = $(patsubst src/%.c,bin/%.o,$(SRC))
-# OBJ = $(SRC:.c=.o)
 
 LIBS := $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
 HEADERS	:= -Iinclude -I $(LIBMLX)/include -I $(LIBFT)/include
@@ -45,12 +43,12 @@ libft: $(LIBFT)/libft.a
 
 $(LIBFT)/libft.a:
 	@echo "🛠️  Building Libft..."
-	@/$(MAKE) -C $(LIBFT) > /dev/null
+	@$(MAKE) -C $(LIBFT) > /dev/null
 	@echo "✅ Libft successfully built!\n"
 
 $(NAME): $(OBJ)
 	@echo "🚧 Building $(NAME) executable..."
-	@$(CC) $(OBJ) $(LIBS) $(HEADERS) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "🎉 $(NAME) ready to play!\n"
 
 bin/%.o: src/%.c

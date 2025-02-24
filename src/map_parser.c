@@ -16,7 +16,7 @@ static void	map_calloc(t_game *game)
 {
 	if (!game->map.arr)
 	{
-		game->map.arr = ft_calloc(MAX_MAP_ROWS, sizeof(char *));
+		game->map.arr = ft_calloc(270, sizeof(char *));
 		if (!game->map.arr)
 			ft_error_clean("Error: Memory allocation for map failed.", game);
 	}

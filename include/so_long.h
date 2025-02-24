@@ -22,7 +22,6 @@
 # include "../lib/Libft/headers/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define MAX_MAP_ROWS (MAP_H / IMG_H)
 # define MAP_H 2500
 # define MAP_W 2500
 # define IMG_H 32
@@ -71,13 +70,13 @@ typedef struct s_position
 
 typedef struct s_game
 {
-	int		fd;
-	int		count;
-	int		finish_game;
-	void	*mlx;
-	t_map	map;
-	t_img	*img;
-	t_txt	*txt;
+	int			fd;
+	int			count;
+	int			finish_game;
+	void		*mlx;
+	t_map		map;
+	t_img		*img;
+	t_txt		*txt;
 	t_position	position;
 }	t_game;
 

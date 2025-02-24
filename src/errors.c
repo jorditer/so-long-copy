@@ -22,7 +22,7 @@ void	ft_error_clean(const char *msg, t_game *game)
 {
 	ft_printf("ERROR %s\n", msg);
 	if (game->mlx)
-        mlx_terminate(game->mlx);
+		mlx_terminate(game->mlx);
 	clean_up(game);
 	exit(1);
 }
