@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 CC = cc
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -g
+# LDFLAGS = -fsanitize=address
 LIBMLX := ./lib/MLX42
 LIBFT := ./lib/Libft
 
@@ -48,6 +49,7 @@ $(LIBFT)/libft.a:
 
 $(NAME): $(OBJ)
 	@echo "🚧 Building $(NAME) executable..."
+# @$(CC) $(OBJ) $(LIBS) $(HEADERS) $(LDFLAGS) -o $(NAME)
 	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "🎉 $(NAME) ready to play!\n"
 
