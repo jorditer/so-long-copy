@@ -16,12 +16,13 @@ static void	map_calloc(t_game *game)
 {
 	if (!game->map.arr)
 	{
-		game->map.arr = ft_calloc(270, sizeof(char *));
+		game->map.arr = ft_calloc(MAX_MAP_ROWS, sizeof(char *));
 		if (!game->map.arr)
 			ft_error_clean("Error: Memory allocation for map failed.", game);
 	}
 }
 
+// if == 0 to only check the first row
 static void	map_len(t_game *game, char *line, int i)
 {
 	int	len;
@@ -29,6 +30,8 @@ static void	map_len(t_game *game, char *line, int i)
 	len = line_len(line);
 	if (i == 0)
 		game->map.columns = len;
+	else if (len != game->map.columns)
+		ft_error_clean("Error: Map must be rectangular", game);
 	if (len >= MAP_W / IMG_W)
 		ft_error_clean("Error: Map file too long.", game);
 	return ;

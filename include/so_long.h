@@ -22,6 +22,7 @@
 # include "../lib/Libft/headers/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
+# define MAX_MAP_ROWS (MAP_H / IMG_H)
 # define MAP_H 2500
 # define MAP_W 2500
 # define IMG_H 32
@@ -96,7 +97,7 @@ void	remove_images(t_game *game);
 void	init_value(t_game *game);
 void	check_args(int argc, char **argv);
 void	clean_up(t_game *game);
-int	line_len(char *str);
+int		line_len(char *str);
 // logic.c
 void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	pick_collect(t_game *game, int y, int x);

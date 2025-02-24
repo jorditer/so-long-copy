@@ -6,7 +6,7 @@
 #    By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/14 21:11:29 by jordi             #+#    #+#              #
-#    Updated: 2025/02/15 12:03:41 by jterrada         ###   ########.fr        #
+#    Updated: 2025/02/15 12:21:18 by jterrada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ libft: $(LIBFT)/libft.a
 
 $(LIBFT)/libft.a:
 	@echo "🛠️  Building Libft..."
-	@$(MAKE) -C $(LIBFT) > /dev/null
+	@/$(MAKE) -C $(LIBFT) > /dev/null
 	@echo "✅ Libft successfully built!\n"
 
 $(NAME): $(OBJ)
